@@ -1,0 +1,51 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.custom-navbar {
+  background-color: rgb(70, 70, 255);
+}
+
+.hero-section {
+  background: white;
+  padding: 60px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.card {
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.product-image {
+  height: 220px;
+  object-fit: cover;
+}
+
+footer {
+  margin-top: 40px;
+  /* padding: 20px; */
+  text-align: center;
+  background-color: #212529;
+  color: white;
+}
+
+.card-body {
+  text-align: center;
+}
+
+#carouselTravelInformation {
+  width: 700px; /* change size */
+  margin: auto; /* center */
+}
+
+#carousel-caption {
+  text-align: center;
+  font-size: medium;
+}
