@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Flight | Philippine Airlines</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="design.css" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <div class="fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"> Philippine Airlines </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainMenu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="mainMenu">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html"> Home </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="search.html"> Search Flights </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="booking.html"> Book Flight </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#"> My Reservations </a>
+              </li>
+
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Account
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Log Out</a></li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Page Content -->
+    <div class="container" style="margin-top: 100px;">
+      <h2 class="mb-4">Complete Your Booking</h2>
+
+      <div class="row">
+        <!-- Left column: booking form (placeholder for teammates) -->
+        <div class="col-lg-8 mb-4">
+          <div class="alert alert-secondary">
+            <strong>Placeholder:</strong> Passenger info form, seat selection,
+            meal &amp; extras selection go here. (Assigned to other group members.)
+          </div>
+
+          <!-- Temporary test buttons - remove once seat map / meal / extras UI exist -->
+          <div class="card p-3 mb-3">
+            <h6>Dev test controls (remove later)</h6>
+            <button class="btn btn-sm btn-outline-dark me-2" id="testSetFlight">Set Sample Flight</button>
+            <button class="btn btn-sm btn-outline-dark me-2" id="testAddSeat">Add Seat 12A</button>
+            <button class="btn btn-sm btn-outline-dark me-2" id="testSetMeal">Set Meal: Vegan</button>
+            <button class="btn btn-sm btn-outline-dark" id="testAddExtra">Add Baggage Fee</button>
+          </div>
+        </div>
+
+        <!-- Right column: Booking Summary Sidebar -->
+        <div class="col-lg-4">
+          <div class="booking-summary card shadow-sm sticky-summary">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Booking Summary</h5>
+
+              <div class="summary-section" id="summaryFlight">
+                <p class="text-muted mb-1">Flight</p>
+                <p class="fw-bold" id="summaryFlightDetails">No flight selected</p>
+              </div>
+
+              <hr />
+
+              <div class="summary-section" id="summaryPassengers">
+                <p class="text-muted mb-1">Passengers</p>
+                <p id="summaryPassengerCount">1 Adult</p>
+              </div>
+
+              <hr />
+
+              <div class="summary-section" id="summarySeats">
+                <p class="text-muted mb-1">Seat(s)</p>
+                <p id="summarySeatList">None selected</p>
+              </div>
+
+              <hr />
+
+              <div class="summary-section" id="summaryMeal">
+                <p class="text-muted mb-1">Meal</p>
+                <p id="summaryMealChoice">Standard</p>
+              </div>
+
+              <hr />
+
+              <div class="summary-section" id="summaryExtras">
+                <p class="text-muted mb-1">Extra Services</p>
+                <ul class="list-unstyled mb-0" id="summaryExtrasList">
+                  <li>None</li>
+                </ul>
+              </div>
+
+              <hr />
+
+              <!-- Collapsible price breakdown -->
+              <div
+                class="d-flex justify-content-between align-items-center"
+                data-bs-toggle="collapse"
+                href="#priceBreakdown"
+                role="button"
+                style="cursor: pointer;"
+              >
+                <span class="text-muted">Price Breakdown</span>
+                <span>&#9662;</span>
+              </div>
+              <div class="collapse mt-2" id="priceBreakdown">
+                <div class="d-flex justify-content-between">
+                  <span>Subtotal</span>
+                  <span id="summarySubtotal">&#8369;0.00</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Extras</span>
+                  <span id="summaryExtrasCost">&#8369;0.00</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Taxes &amp; Fees (12%)</span>
+                  <span id="summaryTaxes">&#8369;0.00</span>
+                </div>
+              </div>
+
+              <hr />
+
+              <div class="d-flex justify-content-between">
+                <h5>Total</h5>
+                <h5 id="summaryGrandTotal">&#8369;0.00</h5>
+              </div>
+
+              <button class="btn btn-primary w-100 mt-3" id="confirmBookingBtn">Confirm Booking</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© Philippine Airlines</p>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Booking Summary Logic -->
+    <script>
+      $(document).ready(function () {
+        // Central state object — other UI components update this
+        let bookingState = {
+          flight: null, // { airline, flightNo, origin, destination, date, time, price }
+          passengers: 1,
+          seats: [], // e.g. ["12A", "12B"]
+          meal: { name: "Standard", price: 0 },
+          extras: {}, // e.g. { Baggage: 250, Insurance: 150 }
+        };
+
+        const TAX_RATE = 0.12;
+
+        function formatCurrency(num) {
+          return "₱" + num.toFixed(2);
+        }
+
+        function renderSummary() {
+          // Flight
+          if (bookingState.flight) {
+            const f = bookingState.flight;
+            $("#summaryFlightDetails").text(
+              f.airline + " " + f.flightNo + " — " + f.origin + " to " + f.destination + " (" + f.date + ", " + f.time + ")"
+            );
+          } else {
+            $("#summaryFlightDetails").text("No flight selected");
+          }
+
+          // Passengers
+          $("#summaryPassengerCount").text(bookingState.passengers + " Adult(s)");
+
+          // Seats
+          $("#summarySeatList").text(
+            bookingState.seats.length ? bookingState.seats.join(", ") : "None selected"
+          );
+
+          // Meal
+          $("#summaryMealChoice").text(
+            bookingState.meal.name +
+              (bookingState.meal.price > 0 ? " (+" + formatCurrency(bookingState.meal.price) + ")" : "")
+          );
+
+          // Extras
+          const extrasEntries = Object.entries(bookingState.extras).filter(([, price]) => price > 0);
+          if (extrasEntries.length === 0) {
+            $("#summaryExtrasList").html("<li>None</li>");
+          } else {
+            $("#summaryExtrasList").html(
+              extrasEntries.map(([name, price]) => "<li>" + name + " (+" + formatCurrency(price) + ")</li>").join("")
+            );
+          }
+
+          // Price calculation
+          const flightPrice = bookingState.flight ? bookingState.flight.price * bookingState.passengers : 0;
+          const mealCost = bookingState.meal.price * bookingState.passengers;
+          const extrasCost = Object.values(bookingState.extras).reduce((sum, p) => sum + p, 0);
+
+          const subtotal = flightPrice + mealCost;
+          const taxes = subtotal * TAX_RATE;
+          const grandTotal = subtotal + extrasCost + taxes;
+
+          $("#summarySubtotal").text(formatCurrency(subtotal));
+          $("#summaryExtrasCost").text(formatCurrency(extrasCost));
+          $("#summaryTaxes").text(formatCurrency(taxes));
+          $("#summaryGrandTotal").text(formatCurrency(grandTotal));
+        }
+
+        // Exposed globally so other components (seat map, meal selector, extras) can call:
+        // window.updateBookingState({ seats: [...] })
+        window.updateBookingState = function (updates) {
+          bookingState = { ...bookingState, ...updates };
+          renderSummary();
+        };
+
+        // --- Dev test buttons (remove once real components exist) ---
+        $("#testSetFlight").click(function () {
+          window.updateBookingState({
+            flight: {
+              airline: "PAL",
+              flightNo: "PR101",
+              origin: "MNL",
+              destination: "CEB",
+              date: "2026-07-01",
+              time: "08:00",
+              price: 2500,
+            },
+          });
+        });
+
+        $("#testAddSeat").click(function () {
+          window.updateBookingState({ seats: [...bookingState.seats, "12A"] });
+        });
+
+        $("#testSetMeal").click(function () {
+          window.updateBookingState({ meal: { name: "Vegan", price: 150 } });
+        });
+
+        $("#testAddExtra").click(function () {
+          window.updateBookingState({ extras: { ...bookingState.extras, Baggage: 250 } });
+        });
+
+        // Initial render
+        renderSummary();
+      });
+    </script>
+  </body>
+</html>

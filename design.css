@@ -49,3 +49,21 @@ footer {
   text-align: center;
   font-size: medium;
 }
+
+/* booking css */
+
+.sticky-summary {
+  position: sticky;
+  top: 100px;
+}
+
+@media (max-width: 991px) {
+  .sticky-summary {
+    position: static;
+    margin-top: 1.5rem;
+  }
+}
+
+.booking-summary .summary-section p {
+  margin-bottom: 0.25rem;
+}
