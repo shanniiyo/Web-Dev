@@ -124,7 +124,7 @@
                             <span class="badge bg-success">Available</span>
                             <span class="badge bg-primary">Selected</span>
                             <span class="badge bg-secondary">Occupied</span>
-                            <span class="badge bg-warning">Premium - +$30</span>
+                            <span class="badge bg-warning">Premium - +₱2000</span>
                         </div>
                     </div>
                 </div>
@@ -230,16 +230,16 @@
                 <div class="row g-4">
                     <!-- Additional Baggage -->
                     <div class="col-md-6">
-                        <label for="baggageQuantity" class="form-label">Additional Baggage: <span id="baggageQty">0</span> pieces (+$50 each)</label>
+                        <label for="baggageQuantity" class="form-label">Additional Baggage: <span id="baggageQty">0</span> pieces (+₱500 each)</label>
                         <input type="range" class="form-range" id="baggageQuantity" min="0" max="5" value="0" onchange="updateBaggage(this.value)" oninput="updateBaggage(this.value)">
-                        <small class="text-muted">Additional baggage costs $50 per piece</small>
+                        <small class="text-muted">Additional baggage costs ₱500 per piece</small>
                     </div>
                     
                     <!-- Priority Boarding -->
                     <div class="col-md-6">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="priorityBoarding" onchange="updateTotalPrice()">
-                            <label class="form-check-label" for="priorityBoarding">Priority Boarding (+$25)</label>
+                            <label class="form-check-label" for="priorityBoarding">Priority Boarding (+₱1000)</label>
                         </div>
                         <small class="text-muted">Board the aircraft before general boarding</small>
                     </div>
@@ -248,7 +248,7 @@
                     <div class="col-md-6">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="travelInsurance" onchange="updateTotalPrice()">
-                            <label class="form-check-label" for="travelInsurance">Travel Insurance (+$35)</label>
+                            <label class="form-check-label" for="travelInsurance">Travel Insurance (+₱1000)</label>
                         </div>
                         <small class="text-muted">Coverage for trip cancellations and medical emergencies</small>
                     </div>
@@ -257,7 +257,7 @@
                     <div class="col-md-6">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="loungeAccess" onchange="updateTotalPrice()">
-                            <label class="form-check-label" for="loungeAccess">Airport Lounge Access (+$45)</label>
+                            <label class="form-check-label" for="loungeAccess">Airport Lounge Access (+₱500)</label>
                         </div>
                         <small class="text-muted">Access to exclusive airport lounges with complimentary amenities</small>
                     </div>
@@ -272,11 +272,11 @@
                         <label for="mealSelect" class="form-label">Select your meal preference:</label>
                         <select class="form-select" id="mealSelect" onchange="updateMealDetails()">
                             <option value="standard" selected>Standard - Included</option>
-                            <option value="vegetarian">Vegetarian - +$15</option>
-                            <option value="vegan">Vegan - +$15</option>
-                            <option value="halal">Halal - +$15</option>
-                            <option value="kosher">Kosher - +$20</option>
-                            <option value="glutenfree">Gluten-Free - +$18</option>
+                            <option value="vegetarian">Vegetarian - +₱150</option>
+                            <option value="vegan">Vegan - +₱150</option>
+                            <option value="halal">Halal - +₱150</option>
+                            <option value="kosher">Kosher - +₱150</option>
+                            <option value="glutenfree">Gluten-Free - +₱150</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -293,13 +293,13 @@
                 <h4 class="mb-3">Price Summary</h4>
                 <div class="row">
                     <div class="col-md-6">
-                        <p>Base Fare: $250.00</p>
-                        <p id="mealCost">Meal: $0.00</p>
-                        <p id="seatCost">Seat Fee: $0.00</p>
-                        <p id="baggageCost">Additional Baggage: $0.00</p>
-                        <p id="servicesCost">Extra Services: $0.00</p>
+                        <p>Base Fare: ₱2500.00</p>
+                        <p id="mealCost">Meal: ₱0.00</p>
+                        <p id="seatCost">Seat Fee: ₱0.00</p>
+                        <p id="baggageCost">Additional Baggage: ₱0.00</p>
+                        <p id="servicesCost">Extra Services: ₱0.00</p>
                         <hr>
-                        <h4>Total: <span id="finalTotal">$250.00</span></h4>
+                        <h4>Total: <span id="finalTotal">₱2500.00</span></h4>
                     </div>
                 </div>
             </div>
@@ -418,16 +418,20 @@
                     <h4>Payment Summary</h4>
                     <div class="d-flex justify-content-between">
                         <span>Base Fare</span>
-                        <span>$200.00</span>
+                        <span>₱2500.00</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Extra Services</span>
+                        <span id="paymentExtras">₱0.00</span>
                     </div>
                     <div class="d-flex justify-content-between">
                         <span>Taxes & Fees</span>
-                        <span>$50.00</span>
+                        <span>₱500.00</span>
                     </div>
                     <hr>
                     <div class="d-flex justify-content-between">
                         <strong>Total</strong>
-                        <strong>$250.00</strong>
+                        <strong id="paymentFinalTotal">₱3000.00</strong>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between mt-4">
@@ -589,27 +593,27 @@
             vegetarian: {
                 name: "Vegetarian Meal",
                 description: "Plant-based meal with fresh vegetables, grains, and dairy-free options where applicable.",
-                cost: 15
+                cost: 150
             },
             vegan: {
                 name: "Vegan Meal",
                 description: "100% plant-based meal with no animal products, including dairy and honey.",
-                cost: 15
+                cost: 150
             },
             halal: {
                 name: "Halal Meal",
                 description: "Meal prepared according to Islamic dietary guidelines, containing no pork or prohibited ingredients.",
-                cost: 15
+                cost: 150
             },
             kosher: {
                 name: "Kosher Meal",
                 description: "Meal prepared according to Jewish dietary laws, certified kosher and packaged separately.",
-                cost: 20
+                cost: 150
             },
             glutenfree: {
                 name: "Gluten-Free Meal",
                 description: "Meal free from wheat, barley, and rye, suitable for those with celiac disease or gluten sensitivity.",
-                cost: 18
+                cost: 150
             }
         };
 
@@ -678,39 +682,48 @@
 
         // Total price calculation
         function updateTotalPrice() {
-            let baseFare = 250;
+            let baseFare = 2500; // Base fare for the flight
             let total = baseFare;
             
             // Calculate meal cost
             const mealSelect = document.getElementById('mealSelect');
             const selectedMeal = mealSelect.value;
             const mealCost = mealDetails[selectedMeal].cost;
-            document.getElementById('mealCost').textContent = `Meal: ${mealCost.toFixed(2)}`;
+            document.getElementById('mealCost').textContent = `Meal: ₱${mealCost.toFixed(2)}`;
             total += mealCost;
             
             // Calculate seat cost
             let seatCost = 0;
             if (currentlySelectedSeat && currentlySelectedSeat.dataset.premium === "true") {
-                seatCost = 30;
+                seatCost = 2000;
             }
-            document.getElementById('seatCost').textContent = `Seat Fee: ${seatCost.toFixed(2)}`;
+            document.getElementById('seatCost').textContent = `Seat Fee: ₱${seatCost.toFixed(2)}`;
             total += seatCost;
             
             // Calculate baggage cost
-            const baggageCost = baggageCount * 50;
-            document.getElementById('baggageCost').textContent = `Additional Baggage: ${baggageCost.toFixed(2)}`;
+            const baggageCost = baggageCount * 500;
+            document.getElementById('baggageCost').textContent = `Additional Baggage: ₱${baggageCost.toFixed(2)}`;
             total += baggageCost;
             
             // Calculate extra services cost
             let servicesCost = 0;
-            if (document.getElementById('priorityBoarding').checked) servicesCost += 25;
-            if (document.getElementById('travelInsurance').checked) servicesCost += 35;
-            if (document.getElementById('loungeAccess').checked) servicesCost += 45;
-            document.getElementById('servicesCost').textContent = `Extra Services: ${servicesCost.toFixed(2)}`;
+            if (document.getElementById('priorityBoarding').checked) servicesCost += 1000;
+            if (document.getElementById('travelInsurance').checked) servicesCost += 1000;
+            if (document.getElementById('loungeAccess').checked) servicesCost += 500;
+            document.getElementById('servicesCost').textContent = `Extra Services: ₱${servicesCost.toFixed(2)}`;
             total += servicesCost;
             
             // Update final total
-            document.getElementById('finalTotal').textContent = `${total.toFixed(2)}`;
+            document.getElementById('finalTotal').textContent = `₱${total.toFixed(2)}`;
+
+            // Update each line item in payment summary using explicit IDs
+            let taxes = 500; // Fixed taxes & fees
+            let extrasTotal = mealCost + seatCost + baggageCost + servicesCost;
+            let finalPaymentTotal = baseFare + extrasTotal + taxes; // Adding fixed taxes & fees
+            document.getElementById('paymentExtras').textContent = `₱${extrasTotal.toFixed(2)}`;
+            document.getElementById('paymentFinalTotal').textContent = `₱${finalPaymentTotal.toFixed(2)}`;
+            
+
         }
     </script>
 </body>
