@@ -40,7 +40,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#"> Search Flights </a>
+              <a class="nav-link" href="search.html"> Search Flights </a>
             </li>
 
             <li class="nav-item">
@@ -83,7 +83,7 @@
           Fly from Manila to over 50 destinations where every journey feels like home.
         </p>
 
-        <button class="btn btn-primary btn-lg">Book Now</button>
+        <button class="btn btn-primary btn-lg mb-4">Book Now</button>
         </div>
         <div class="col-md-6 text-center">
             <img src="https://picsum.photos/500/300"
@@ -154,7 +154,7 @@ alt="Technology">
     </div>
 
     <!-- Departure Date -->
-    <div class="col-md-2">
+    <div class="col-md-3">
         <label for="departureDate" class="form-label">
             <b>Departure Date</b>
         </label>
@@ -166,7 +166,7 @@ alt="Technology">
     </div>
 
     <!-- Return Date -->
-    <div class="col-md-2">
+    <div class="col-md-3">
         <label for="returnDate" class="form-label">
             <b>Return Date</b>
         </label>
@@ -177,14 +177,242 @@ alt="Technology">
         >
     </div>
 
-    <!-- Search -->
-    <div class="col-md-2">
+
+<!-- Extra Filters -->
+<div class="row g-3 mt-2">
+
+    <!-- Passenger Selector -->
+    <div class="col-md-5">
+
+        <label class="form-label">
+            <b>Passengers</b>
+        </label>
+
+        <div class="input-group">
+
+            <span class="input-group-text">
+                Adults
+            </span>
+
+            <select class="form-select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+
+            <span class="input-group-text">
+                Children
+            </span>
+
+            <select class="form-select">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+            </select>
+
+            <span class="input-group-text">
+                Infants
+            </span>
+
+            <select class="form-select">
+                <option>0</option>
+                <option>1</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- Cabin Class -->
+    <div class="col-md-3">
+
+        <label class="form-label">
+            <b>Cabin Class</b>
+        </label>
+
+        <select class="form-select">
+
+            <option selected>
+                Economy
+            </option>
+
+            <option>
+                Premium Economy
+            </option>
+
+            <option>
+                Business
+            </option>
+
+            <option>
+                First Class
+            </option>
+
+        </select>
+
+    </div>
+
+        <!-- Search -->
+    <div class="col-md-4 mt-4">
+        <label class="form-label">
+        </label>
         <button class="btn btn-dark w-100">
             Search
         </button>
     </div>
 
 </div>
+
+
+
+                    <!-- Advanced Search -->
+                    <div class="accordion mt-4"
+                    id="advancedSearch">
+
+                    <div class="accordion-item">
+
+                    <h2 class="accordion-header">
+
+                    <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#advancedOptions">
+
+                    Advanced Search
+
+                    </button>
+
+                    </h2>
+
+                    <div
+                    id="advancedOptions"
+                    class="accordion-collapse collapse">
+
+                    <div class="accordion-body">
+
+                    <div class="row g-3">
+
+                    <!-- Preferred Airline -->
+                    <div class="col-md-4">
+
+                    <label class="form-label">
+
+                    Preferred Airline
+
+                    </label>
+
+                    <select class="form-select">
+
+                    <option>
+                    Any Airline
+                    </option>
+
+                    <option>
+                    Philippine Airlines
+                    </option>
+
+                    <option>
+                    Cebu Pacific
+                    </option>
+
+                    <option>
+                    AirAsia
+                    </option>
+
+                    <option>
+                    Singapore Airlines
+                    </option>
+
+                    <option>
+                    Japan Airlines
+                    </option>
+
+                    </select>
+
+                    </div>
+
+
+                    <!-- Direct Flight -->
+                    <div class="col-md-4">
+
+                    <div class="form-check mt-4">
+
+                    <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="directOnly">
+
+                    <label
+                    class="form-check-label"
+                    for="directOnly">
+
+                    Direct Flights Only
+
+                    </label>
+
+                    </div>
+
+                    </div>
+
+
+                    <!-- Flexible -->
+                    <div class="col-md-4">
+
+                    <div class="form-check mt-4">
+
+                    <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="flexible">
+
+                    <label
+                    class="form-check-label"
+                    for="flexible">
+
+                    Flexible Dates
+
+                    </label>
+
+                    </div>
+
+                    </div>
+                        <!-- Price Slider -->
+                        <div class="col-md-12">
+
+                        <label class="form-label">
+
+                        Max Budget:
+                        <span id="priceValue">
+
+                        ₱50000
+
+                        </span>
+
+                        </label>
+
+                        <input
+                            type="range"
+                            class="form-range"
+                            min="5000"
+                            max="200000"
+                            step="5000"
+                            value="50000"
+                            id="priceRange"
+                            >
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -192,7 +420,7 @@ alt="Technology">
 
 
     <!-- Popular Destinations -->
-    <div class="container mb-4">
+    <div class="container mb-4 mt-4">
       <h2 class="text-center mb-4">Popular Destinations</h2>
       <div class="row">
         <!-- Destination 1 -->
@@ -310,7 +538,7 @@ alt="Technology">
         <p> Make sure you're all set before your flight. </p>
     </div>
         
-        <div id="carouselTravelInformation" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselTravelInformation" class="carousel slide col-md-9" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselTravelInformation" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselTravelInformation" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -390,6 +618,7 @@ alt="Technology">
           </div>
         </div>
       </div>
+    </div>
     </div>
 
     <!-- Footer -->
