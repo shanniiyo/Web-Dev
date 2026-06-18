@@ -90,8 +90,8 @@
 
         <!-- Step 1: Flight Details -->
         <div id="step1" class="card shadow-sm p-4 mb-4">
-            <h3 class="mb-4">Review Your Flight</h3>
-            <div class="row">
+            <!-- Flight Details -->
+            <div class="row mb-4">
                 <div class="col-md-6">
                     <div class="border rounded p-3 mb-3">
                         <h5>Departure Flight</h5>
@@ -111,17 +111,199 @@
                     </div>
                 </div>
             </div>
-            <div class="border rounded p-3">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Passengers:</strong> 1 Adult</p>
-                        <p><strong>Cabin Class:</strong> Economy</p>
+
+            <!-- Seat Selection System -->
+            <div class="border rounded p-4 mb-4">
+                <h4 class="mb-3">Seat Selection</h4>
+                
+                <!-- Seat Legend -->
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <h6>Seat Status Legend:</h6>
+                        <div class="d-flex flex-wrap gap-3">
+                            <span class="badge bg-success">Available</span>
+                            <span class="badge bg-primary">Selected</span>
+                            <span class="badge bg-secondary">Occupied</span>
+                            <span class="badge bg-warning">Premium - +$30</span>
+                        </div>
                     </div>
-                    <div class="col-md-6 text-end">
-                        <h4>Total: $250.00</h4>
+                </div>
+
+                <!-- Interactive Seat Map (Bootstrap Grid) -->
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-8">
+                        <div class="seat-map bg-light p-4 rounded">
+                            <div class="text-center mb-3"><strong>Cockpit</strong></div>
+                            <!-- Row 1 -->
+                            <div class="row g-2 mb-2 justify-content-center">
+                                <div class="col-auto seat available" data-seat="1A" data-premium="true" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-warning text-white text-center" style="min-width: 50px; cursor: pointer;">1A</div>
+                                </div>
+                                <div class="col-auto seat available" data-seat="1B" data-premium="true" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-warning text-white text-center" style="min-width: 50px; cursor: pointer;">1B</div>
+                                </div>
+                                <div class="col-auto">&nbsp;</div>
+                                <div class="col-auto seat available" data-seat="1C" data-premium="true" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-warning text-white text-center" style="min-width: 50px; cursor: pointer;">1C</div>
+                                </div>
+                                <div class="col-auto seat available" data-seat="1D" data-premium="true" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-warning text-white text-center" style="min-width: 50px; cursor: pointer;">1D</div>
+                                </div>
+                            </div>
+                            <!-- Row 2 -->
+                            <div class="row g-2 mb-2 justify-content-center">
+                                <div class="col-auto seat available" data-seat="2A" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">2A</div>
+                                </div>
+                                <div class="col-auto seat occupied" data-seat="2B" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-secondary text-white text-center" style="min-width: 50px; cursor: not-allowed;">2B</div>
+                                </div>
+                                <div class="col-auto">&nbsp;</div>
+                                <div class="col-auto seat available" data-seat="2C" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">2C</div>
+                                </div>
+                                <div class="col-auto seat available" data-seat="2D" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">2D</div>
+                                </div>
+                            </div>
+                            <!-- Row 3 -->
+                            <div class="row g-2 mb-2 justify-content-center">
+                                <div class="col-auto seat available" data-seat="3A" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">3A</div>
+                                </div>
+                                <div class="col-auto seat available" data-seat="3B" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">3B</div>
+                                </div>
+                                <div class="col-auto">&nbsp;</div>
+                                <div class="col-auto seat occupied" data-seat="3C" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-secondary text-white text-center" style="min-width: 50px; cursor: not-allowed;">3C</div>
+                                </div>
+                                <div class="col-auto seat available" data-seat="3D" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">3D</div>
+                                </div>
+                            </div>
+                            <!-- Row 4 -->
+                            <div class="row g-2 mb-2 justify-content-center">
+                                <div class="col-auto seat available" data-seat="4A" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">4A</div>
+                                </div>
+                                <div class="col-auto seat available" data-seat="4B" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">4B</div>
+                                </div>
+                                <div class="col-auto">&nbsp;</div>
+                                <div class="col-auto seat available" data-seat="4C" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">4C</div>
+                                </div>
+                                <div class="col-auto seat occupied" data-seat="4D" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-secondary text-white text-center" style="min-width: 50px; cursor: not-allowed;">4D</div>
+                                </div>
+                            </div>
+                            <!-- Row 5 -->
+                            <div class="row g-2 mb-2 justify-content-center">
+                                <div class="col-auto seat available" data-seat="5A" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">5A</div>
+                                </div>
+                                <div class="col-auto seat occupied" data-seat="5B" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-secondary text-white text-center" style="min-width: 50px; cursor: not-allowed;">5B</div>
+                                </div>
+                                <div class="col-auto">&nbsp;</div>
+                                <div class="col-auto seat available" data-seat="5C" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">5C</div>
+                                </div>
+                                <div class="col-auto seat available" data-seat="5D" onclick="selectSeat(this)">
+                                    <div class="p-2 rounded bg-success text-white text-center" style="min-width: 50px; cursor: pointer;">5D</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected Seat Display -->
+                <div id="selectedSeatInfo" class="alert alert-info" style="display: none;">
+                    <strong>Selected Seat:</strong> <span id="selectedSeat"></span>
+                </div>
+            </div>
+
+            <!-- Extra Services Section -->
+            <div class="border rounded p-4 mb-4">
+                <h4 class="mb-3">Extra Services</h4>
+                <div class="row g-4">
+                    <!-- Additional Baggage -->
+                    <div class="col-md-6">
+                        <label for="baggageQuantity" class="form-label">Additional Baggage: <span id="baggageQty">0</span> pieces (+$50 each)</label>
+                        <input type="range" class="form-range" id="baggageQuantity" min="0" max="5" value="0" onchange="updateBaggage(this.value)" oninput="updateBaggage(this.value)">
+                        <small class="text-muted">Additional baggage costs $50 per piece</small>
+                    </div>
+                    
+                    <!-- Priority Boarding -->
+                    <div class="col-md-6">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="priorityBoarding" onchange="updateTotalPrice()">
+                            <label class="form-check-label" for="priorityBoarding">Priority Boarding (+$25)</label>
+                        </div>
+                        <small class="text-muted">Board the aircraft before general boarding</small>
+                    </div>
+                    
+                    <!-- Travel Insurance -->
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="travelInsurance" onchange="updateTotalPrice()">
+                            <label class="form-check-label" for="travelInsurance">Travel Insurance (+$35)</label>
+                        </div>
+                        <small class="text-muted">Coverage for trip cancellations and medical emergencies</small>
+                    </div>
+                    
+                    <!-- Lounge Access -->
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="loungeAccess" onchange="updateTotalPrice()">
+                            <label class="form-check-label" for="loungeAccess">Airport Lounge Access (+$45)</label>
+                        </div>
+                        <small class="text-muted">Access to exclusive airport lounges with complimentary amenities</small>
                     </div>
                 </div>
             </div>
+            
+            <!-- Meal Selection -->
+            <div class="border rounded p-4 mb-4">
+                <h4 class="mb-3">Meal Selection</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="mealSelect" class="form-label">Select your meal preference:</label>
+                        <select class="form-select" id="mealSelect" onchange="updateMealDetails()">
+                            <option value="standard" selected>Standard - Included</option>
+                            <option value="vegetarian">Vegetarian - +$15</option>
+                            <option value="vegan">Vegan - +$15</option>
+                            <option value="halal">Halal - +$15</option>
+                            <option value="kosher">Kosher - +$20</option>
+                            <option value="glutenfree">Gluten-Free - +$18</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="mealDescription" class="p-3 bg-light rounded">
+                            <h6>Standard Meal</h6>
+                            <p class="mb-0">Regular in-flight meal with main course, side, and dessert. Complimentary beverage included.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="border rounded p-4">
+                <h4 class="mb-3">Price Summary</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Base Fare: $250.00</p>
+                        <p id="mealCost">Meal: $0.00</p>
+                        <p id="seatCost">Seat Fee: $0.00</p>
+                        <p id="baggageCost">Additional Baggage: $0.00</p>
+                        <p id="servicesCost">Extra Services: $0.00</p>
+                        <hr>
+                        <h4>Total: <span id="finalTotal">$250.00</span></h4>
+                    </div>
+                </div>
+            </div>
+            
             <div class="text-end mt-4">
                 <button class="btn btn-dark btn-lg" onclick="nextStep(2)">Continue to Passenger Information</button>
             </div>
@@ -395,6 +577,140 @@
             }
             
             return false;
+        }
+
+        // Meal selection functions
+        const mealDetails = {
+            standard: {
+                name: "Standard Meal",
+                description: "Regular in-flight meal with main course, side, and dessert. Complimentary beverage included.",
+                cost: 0
+            },
+            vegetarian: {
+                name: "Vegetarian Meal",
+                description: "Plant-based meal with fresh vegetables, grains, and dairy-free options where applicable.",
+                cost: 15
+            },
+            vegan: {
+                name: "Vegan Meal",
+                description: "100% plant-based meal with no animal products, including dairy and honey.",
+                cost: 15
+            },
+            halal: {
+                name: "Halal Meal",
+                description: "Meal prepared according to Islamic dietary guidelines, containing no pork or prohibited ingredients.",
+                cost: 15
+            },
+            kosher: {
+                name: "Kosher Meal",
+                description: "Meal prepared according to Jewish dietary laws, certified kosher and packaged separately.",
+                cost: 20
+            },
+            glutenfree: {
+                name: "Gluten-Free Meal",
+                description: "Meal free from wheat, barley, and rye, suitable for those with celiac disease or gluten sensitivity.",
+                cost: 18
+            }
+        };
+
+        function updateMealDetails() {
+            const select = document.getElementById('mealSelect');
+            const selectedMeal = select.value;
+            const meal = mealDetails[selectedMeal];
+            
+            document.getElementById('mealDescription').innerHTML = `
+                <h6>${meal.name}</h6>
+                <p class="mb-0">${meal.description}</p>
+            `;
+            
+            updateTotalPrice();
+        }
+
+        // Seat selection functions
+        let currentlySelectedSeat = null;
+
+        function selectSeat(element) {
+            const seat = element.querySelector('div');
+            
+            // Check if seat is occupied
+            if (element.classList.contains('occupied')) {
+                alert('This seat is already occupied. Please select another seat.');
+                return;
+            }
+            
+            // Deselect previous seat
+            if (currentlySelectedSeat) {
+                const prevSeat = currentlySelectedSeat.querySelector('div');
+                if (currentlySelectedSeat.dataset.premium === "true") {
+                    prevSeat.className = 'p-2 rounded bg-warning text-white text-center';
+                } else {
+                    prevSeat.className = 'p-2 rounded bg-success text-white text-center';
+                }
+                prevSeat.style.cursor = 'pointer';
+            }
+            
+            // Select new seat
+            if (currentlySelectedSeat !== element) {
+                currentlySelectedSeat = element;
+                seat.className = 'p-2 rounded bg-primary text-white text-center';
+                seat.style.cursor = 'pointer';
+                
+                // Show selected seat info
+                document.getElementById('selectedSeatInfo').style.display = 'block';
+                document.getElementById('selectedSeat').textContent = element.dataset.seat;
+            } else {
+                // Deselect if clicking the same seat
+                currentlySelectedSeat = null;
+                document.getElementById('selectedSeatInfo').style.display = 'none';
+            }
+            
+            updateTotalPrice();
+        }
+
+        // Extra services functions
+        let baggageCount = 0;
+
+        function updateBaggage(value) {
+            baggageCount = parseInt(value);
+            document.getElementById('baggageQty').textContent = value;
+            updateTotalPrice();
+        }
+
+        // Total price calculation
+        function updateTotalPrice() {
+            let baseFare = 250;
+            let total = baseFare;
+            
+            // Calculate meal cost
+            const mealSelect = document.getElementById('mealSelect');
+            const selectedMeal = mealSelect.value;
+            const mealCost = mealDetails[selectedMeal].cost;
+            document.getElementById('mealCost').textContent = `Meal: ${mealCost.toFixed(2)}`;
+            total += mealCost;
+            
+            // Calculate seat cost
+            let seatCost = 0;
+            if (currentlySelectedSeat && currentlySelectedSeat.dataset.premium === "true") {
+                seatCost = 30;
+            }
+            document.getElementById('seatCost').textContent = `Seat Fee: ${seatCost.toFixed(2)}`;
+            total += seatCost;
+            
+            // Calculate baggage cost
+            const baggageCost = baggageCount * 50;
+            document.getElementById('baggageCost').textContent = `Additional Baggage: ${baggageCost.toFixed(2)}`;
+            total += baggageCost;
+            
+            // Calculate extra services cost
+            let servicesCost = 0;
+            if (document.getElementById('priorityBoarding').checked) servicesCost += 25;
+            if (document.getElementById('travelInsurance').checked) servicesCost += 35;
+            if (document.getElementById('loungeAccess').checked) servicesCost += 45;
+            document.getElementById('servicesCost').textContent = `Extra Services: ${servicesCost.toFixed(2)}`;
+            total += servicesCost;
+            
+            // Update final total
+            document.getElementById('finalTotal').textContent = `${total.toFixed(2)}`;
         }
     </script>
 </body>
