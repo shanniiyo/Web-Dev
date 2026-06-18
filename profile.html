@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Profile | FlyScanners</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="design.css" />
+
+    <!-- Page styles moved to design.css -->
+  </head>
+
+  <body>
+    <!-- ── Navigation ── -->
+    <div class="fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">FlyScanners</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainMenu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mainMenu">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="search.html">Search Flights</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="reservations.html">My Reservations</a>
+              </li>
+              <div class="dropdown">
+                <button
+                  class="btn btn-success dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Account
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item active" href="profile.html"
+                      ><i class="bi bi-person-fill me-2"></i>Profile</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="admin-dashboard.html"
+                      id="dashboardLink"
+                      ><i class="bi bi-gear-fill me-2"></i>Admin Dashboard</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a
+                      class="dropdown-item text-danger"
+                      href="#"
+                      id="navLogoutLink"
+                      ><i class="bi bi-box-arrow-right me-2"></i>Log Out</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ── Page Content ── -->
+    <div class="container" style="margin-top: 100px; margin-bottom: 60px">
+      <div class="row g-4">
+        <!-- ══════════ LEFT SIDEBAR ══════════ -->
+        <div class="col-lg-3">
+          <div class="profile-sticky">
+            <!-- Avatar -->
+            <div class="section-card mb-3">
+              <div class="section-body profile-sidebar">
+                <div class="avatar-wrapper">
+                  <img
+                    src="https://ui-avatars.com/api/?name=Paula+Sarmiento&background=212529&color=fff&size=120"
+                    id="avatarImg"
+                    alt="Profile Photo"
+                  />
+                  <button
+                    class="avatar-edit-btn"
+                    id="avatarEditBtn"
+                    title="Change photo"
+                  >
+                    <i class="bi bi-camera-fill"></i>
+                  </button>
+                  <!-- Hidden file input -->
+                  <input
+                    type="file"
+                    id="avatarInput"
+                    accept="image/*"
+                    class="d-none"
+                  />
+                </div>
+                <h5 class="mb-0 fw-bold">Paula Sarmiento</h5>
+                <p class="text-muted mb-1" style="font-size: 0.82rem">
+                  paulasarmiento@email.com
+                </p>
+
+                <div class="d-flex justify-content-center gap-4 text-center">
+                  <div>
+                    <div class="fw-bold">8</div>
+                    <div class="text-muted" style="font-size: 0.72rem">
+                      Flights
+                    </div>
+                  </div>
+                  <div class="border-start"></div>
+                  <div>
+                    <div class="fw-bold">3</div>
+                    <div class="text-muted" style="font-size: 0.72rem">
+                      Countries
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nav pills -->
+            <div class="section-card">
+              <div class="section-body p-2">
+                <nav class="nav flex-column profile-nav" id="profileTabs">
+                  <a
+                    class="nav-link active"
+                    href="#personal"
+                    data-tab="personal"
+                  >
+                    <i class="bi bi-person-fill"></i> Personal Info</a
+                  >
+                  <a class="nav-link" href="#passengers" data-tab="passengers"
+                    ><i class="bi bi-people-fill"></i> Saved Passengers</a
+                  >
+                  <a class="nav-link" href="#payment" data-tab="payment">
+                    <i class="bi bi-credit-card-fill"></i> Payment Methods</a
+                  >
+                  <a class="nav-link" href="#notif" data-tab="notif">
+                    <i class="bi bi-bell-fill"></i> Notifications</a
+                  >
+                  <a class="nav-link" href="#history" data-tab="history">
+                    <i class="bi bi-clock-history"></i> Travel History</a
+                  >
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════ MAIN CONTENT ══════════ -->
+        <div class="col-lg-9">
+          <!-- ─────────────────────────────────
+               TAB: PERSONAL INFORMATION
+          ───────────────────────────────── -->
+          <div id="tab-personal" class="tab-content-section">
+            <!-- ── Basic Info ── -->
+            <div class="section-card">
+              <div class="section-header">
+                <i class="bi bi-person-fill"></i>Personal Information
+              </div>
+              <div class="section-body">
+                <div class="row g-3">
+                  <!-- First Name -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piFirstName"
+                      >First Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="piFirstName"
+                      value="Paula"
+                    />
+                  </div>
+
+                  <!-- Last Name -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piLastName"
+                      >Last Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="piLastName"
+                      value="Dela Cruz"
+                    />
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piEmail"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="piEmail"
+                      value="paulasarmiento@email.com"
+                    />
+                  </div>
+
+                  <!-- Contact Number with country code -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piPhone"
+                      >Contact Number</label
+                    >
+                    <div class="input-group">
+                      <select
+                        class="form-select"
+                        id="piCountryCode"
+                        style="max-width: 140px"
+                      >
+                        <option value="+63" selected>🇵🇭 +63</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+82">🇰🇷 +82</option>
+                        <option value="+86">🇨🇳 +86</option>
+                        <option value="+852">🇭🇰 +852</option>
+                        <option value="+65">🇸🇬 +65</option>
+                        <option value="+66">🇹🇭 +66</option>
+                        <option value="+61">🇦🇺 +61</option>
+                        <option value="+971">🇦🇪 +971</option>
+                        <option value="+49">🇩🇪 +49</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+39">🇮🇹 +39</option>
+                        <option value="+34">🇪🇸 +34</option>
+                        <option value="+91">🇮🇳 +91</option>
+                        <option value="+60">🇲🇾 +60</option>
+                        <option value="+62">🇮🇩 +62</option>
+                        <option value="+84">🇻🇳 +84</option>
+                        <option value="+880">🇧🇩 +880</option>
+                      </select>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="piPhone"
+                        placeholder="912 345 6789"
+                        value="912 345 6789"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Nationality -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piNationality"
+                      >Nationality</label
+                    >
+                    <select class="form-select" id="piNationality">
+                      <option value="">Select nationality</option>
+                      <option value="Filipino" selected>Filipino</option>
+                      <option value="American">American</option>
+                      <option value="Australian">Australian</option>
+                      <option value="British">British</option>
+                      <option value="Canadian">Canadian</option>
+                      <option value="Chinese">Chinese</option>
+                      <option value="French">French</option>
+                      <option value="German">German</option>
+                      <option value="Hong Konger">Hong Konger</option>
+                      <option value="Indian">Indian</option>
+                      <option value="Indonesian">Indonesian</option>
+                      <option value="Italian">Italian</option>
+                      <option value="Japanese">Japanese</option>
+                      <option value="Korean">Korean</option>
+                      <option value="Malaysian">Malaysian</option>
+                      <option value="Saudi Arabian">Saudi Arabian</option>
+                      <option value="Singaporean">Singaporean</option>
+                      <option value="Spanish">Spanish</option>
+                      <option value="Thai">Thai</option>
+                      <option value="Vietnamese">Vietnamese</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <!-- Date of Birth — day / month / year dropdowns -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label">Date of Birth</label>
+                    <div class="d-flex gap-2">
+                      <select class="form-select" id="piDobDay">
+                        <option value="">Day</option>
+                      </select>
+                      <select class="form-select" id="piDobMonth">
+                        <option value="">Month</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05" selected>May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                      </select>
+                      <select class="form-select" id="piDobYear">
+                        <option value="">Year</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Gender -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piGender"
+                      >Gender</label
+                    >
+                    <select class="form-select" id="piGender">
+                      <option value="">Select gender</option>
+                      <option value="Male" selected>Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Non-binary">Non-binary</option>
+                      <option value="Prefer not to say">
+                        Prefer not to say
+                      </option>
+                    </select>
+                  </div>
+
+                  <!-- Emergency Contact Name -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piEmergencyName"
+                      >Emergency Contact Name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="piEmergencyName"
+                      value="Maria Dela Cruz"
+                    />
+                  </div>
+
+                  <!-- Emergency Contact Number -->
+                  <div class="col-md-6">
+                    <label class="form-label field-label" for="piEmergencyPhone"
+                      >Emergency Contact Number</label
+                    >
+                    <div class="input-group">
+                      <select
+                        class="form-select"
+                        id="piEmergencyCode"
+                        style="max-width: 140px"
+                      >
+                        <option value="+63" selected>🇵🇭 +63</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+82">🇰🇷 +82</option>
+                        <option value="+86">🇨🇳 +86</option>
+                        <option value="+852">🇭🇰 +852</option>
+                        <option value="+65">🇸🇬 +65</option>
+                        <option value="+66">🇹🇭 +66</option>
+                        <option value="+61">🇦🇺 +61</option>
+                        <option value="+971">🇦🇪 +971</option>
+                      </select>
+                      <input
+                        type="tel"
+                        class="form-control"
+                        id="piEmergencyPhone"
+                        placeholder="917 000 0000"
+                        value="917 000 0000"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <!-- /row basic info -->
+              </div>
+
+              <!-- ── Passport Details sub-card ── -->
+              <div
+                class="section-body"
+                style="border-top: 1px solid #dee2e6; padding-top: 16px"
+              >
+                <div
+                  class="d-flex align-items-center justify-content-between mb-2 flex-wrap gap-2"
+                >
+                  <div>
+                    <span class="fw-bold" style="font-size: 0.95rem"
+                      ><i class="bi bi-journal-text me-2"></i>Passport
+                      Details</span
+                    >
+                    <span
+                      class="badge bg-secondary ms-2"
+                      style="font-size: 0.7rem"
+                      >Optional</span
+                    >
+                  </div>
+                  <small class="text-muted" style="font-size: 0.78rem"
+                    >Not required for domestic flights</small
+                  >
+                </div>
+
+                <div class="passport-subcard">
+                  <div class="row g-3">
+                    <!-- Passport Nationality -->
+                    <div class="col-md-6">
+                      <label class="form-label field-label" for="ppNationality"
+                        >Nationality (as on passport)</label
+                      >
+                      <select class="form-select" id="ppNationality">
+                        <option value="">Select nationality</option>
+                        <option value="Filipino" selected>Filipino</option>
+                        <option value="American">American</option>
+                        <option value="Australian">Australian</option>
+                        <option value="British">British</option>
+                        <option value="Canadian">Canadian</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Hong Konger">Hong Konger</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Indonesian">Indonesian</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Korean">Korean</option>
+                        <option value="Malaysian">Malaysian</option>
+                        <option value="Saudi Arabian">Saudi Arabian</option>
+                        <option value="Singaporean">Singaporean</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Vietnamese">Vietnamese</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+
+                    <!-- Document Number -->
+                    <div class="col-md-6">
+                      <label class="form-label field-label" for="ppDocNumber"
+                        >Document Number</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="ppDocNumber"
+                        placeholder="e.g. P1234567A"
+                        value="P1234567A"
+                      />
+                    </div>
+
+                    <!-- Expiry Date — day / month / year dropdowns -->
+                    <div class="col-md-6">
+                      <label class="form-label field-label">Expiry Date</label>
+                      <div class="d-flex gap-2">
+                        <select class="form-select" id="ppExpDay">
+                          <option value="">Day</option>
+                        </select>
+                        <select class="form-select" id="ppExpMonth">
+                          <option value="">Month</option>
+                          <option value="01" selected>January</option>
+                          <option value="02">February</option>
+                          <option value="03">March</option>
+                          <option value="04">April</option>
+                          <option value="05">May</option>
+                          <option value="06">June</option>
+                          <option value="07">July</option>
+                          <option value="08">August</option>
+                          <option value="09">September</option>
+                          <option value="10">October</option>
+                          <option value="11">November</option>
+                          <option value="12">December</option>
+                        </select>
+                        <select class="form-select" id="ppExpYear">
+                          <option value="">Year</option>
+                        </select>
+                      </div>
+                      <small
+                        class="text-muted mt-1 d-block"
+                        style="font-size: 0.75rem"
+                        >Format: DD / MM / YYYY &nbsp;e.g. 31 / 01 / 2025</small
+                      >
+                    </div>
+
+                    <!-- Issued By -->
+                    <div class="col-md-6">
+                      <label class="form-label field-label" for="ppIssuedBy"
+                        >Document Issued By</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="ppIssuedBy"
+                        placeholder="e.g. Republic of the Philippines"
+                        value="Republic of the Philippines"
+                      />
+                    </div>
+                  </div>
+                  <!-- /row passport -->
+                </div>
+                <!-- /passport-subcard -->
+              </div>
+
+              <!-- ── Single Save Button ── -->
+              <div class="save-bar">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  id="resetPersonalBtn"
+                >
+                  <i class="bi bi-arrow-counterclockwise me-1"></i>Reset
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-success px-4"
+                  id="savePersonalBtn"
+                >
+                  <i class="bi bi-check-lg me-1"></i>Save Changes
+                </button>
+              </div>
+            </div>
+            <!-- /section-card -->
+          </div>
+          <!-- /tab-personal -->
+
+          <!-- ─────────────────────────────────
+               TAB: SAVED PASSENGERS
+          ───────────────────────────────── -->
+          <div id="tab-passengers" class="tab-content-section d-none">
+            <div class="section-card">
+              <div class="section-header">
+                <i class="bi bi-people-fill"></i>Saved Passengers
+                <button
+                  class="btn btn-sm btn-light ms-auto"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addPassengerModal"
+                >
+                  <i class="bi bi-plus-lg me-1"></i>Add Passenger
+                </button>
+              </div>
+              <div class="section-body">
+                <p class="text-muted mb-3" style="font-size: 0.85rem">
+                  Saved passengers speed up your booking process.
+                </p>
+                <div id="passengerList"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─────────────────────────────────
+               TAB: PAYMENT METHODS
+          ───────────────────────────────── -->
+          <div id="tab-payment" class="tab-content-section d-none">
+            <div class="section-card">
+              <div class="section-header">
+                <i class="bi bi-credit-card-fill"></i>Payment Methods
+              </div>
+              <div class="section-body">
+                <p class="text-muted mb-4" style="font-size: 0.85rem">
+                  UI mockup — payment data is not stored.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                  <!-- Card 1 -->
+                  <div class="payment-card-mock">
+                    <div class="chip"></div>
+                    <div class="card-number">•••• •••• •••• 4567</div>
+                    <div class="card-meta">
+                      <div>
+                        <div style="font-size: 0.65rem; opacity: 0.7">
+                          CARD HOLDER
+                        </div>
+                        PAULA SARMIENTO
+                      </div>
+                      <div>
+                        <div style="font-size: 0.65rem; opacity: 0.7">
+                          EXPIRES
+                        </div>
+                        08/28
+                      </div>
+                      <div style="font-size: 1.5rem; opacity: 0.7">
+                        <i class="bi bi-credit-card-2-back-fill"></i>
+                      </div>
+                    </div>
+                    <span
+                      class="badge bg-success mt-2"
+                      style="font-size: 0.68rem"
+                      >Default</span
+                    >
+                  </div>
+
+                  <!-- Add card placeholder -->
+                  <div
+                    style="
+                      width: 220px;
+                      height: 160px;
+                      border: 2px dashed #dee2e6;
+                      border-radius: 14px;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      gap: 6px;
+                      cursor: pointer;
+                      color: #adb5bd;
+                      transition: border-color 0.2s;
+                    "
+                    id="addCardBtn"
+                  >
+                    <i class="bi bi-plus-circle" style="font-size: 2rem"></i>
+                    <span style="font-size: 0.82rem">Add New Card</span>
+                  </div>
+                </div>
+
+                <hr />
+                <h6 class="fw-bold mb-3">Other Payment Options</h6>
+                <div class="row g-3">
+                  <div class="col-sm-6 col-md-4">
+                    <div
+                      class="border rounded-3 p-3 d-flex align-items-center gap-2 text-muted"
+                      style="font-size: 0.9rem"
+                    >
+                      <i class="bi bi-phone-fill fs-5"></i> GCash
+                      <span
+                        class="ms-auto badge bg-secondary"
+                        style="font-size: 0.68rem"
+                        >Linked</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4">
+                    <div
+                      class="border rounded-3 p-3 d-flex align-items-center gap-2 text-muted"
+                      style="font-size: 0.9rem"
+                    >
+                      <i class="bi bi-bank fs-5"></i> PayMaya
+                      <span
+                        class="ms-auto badge bg-outline-secondary text-muted border"
+                        style="font-size: 0.68rem"
+                        >+ Add</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4">
+                    <div
+                      class="border rounded-3 p-3 d-flex align-items-center gap-2 text-muted"
+                      style="font-size: 0.9rem"
+                    >
+                      <i class="bi bi-paypal fs-5"></i> PayPal
+                      <span
+                        class="ms-auto badge bg-outline-secondary text-muted border"
+                        style="font-size: 0.68rem"
+                        >+ Add</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─────────────────────────────────
+               TAB: NOTIFICATIONS
+          ───────────────────────────────── -->
+          <div id="tab-notif" class="tab-content-section d-none">
+            <div class="section-card">
+              <div class="section-header">
+                <i class="bi bi-bell-fill"></i>Notification Preferences
+              </div>
+              <div class="section-body">
+                <p class="text-muted mb-4" style="font-size: 0.85rem">
+                  Manage how and when we contact you.
+                </p>
+
+                <h6
+                  class="fw-bold text-uppercase mb-3"
+                  style="
+                    font-size: 0.78rem;
+                    letter-spacing: 0.06em;
+                    color: #6c757d;
+                  "
+                >
+                  Email Notifications
+                </h6>
+                <div id="emailNotifList">
+                  <!-- Rows injected by JS -->
+                </div>
+
+                <hr class="my-4" />
+
+                <h6
+                  class="fw-bold text-uppercase mb-3"
+                  style="
+                    font-size: 0.78rem;
+                    letter-spacing: 0.06em;
+                    color: #6c757d;
+                  "
+                >
+                  Push Notifications
+                </h6>
+                <div id="pushNotifList"></div>
+
+                <hr class="my-4" />
+                <h6
+                  class="fw-bold text-uppercase mb-3"
+                  style="
+                    font-size: 0.78rem;
+                    letter-spacing: 0.06em;
+                    color: #6c757d;
+                  "
+                >
+                  Contact Preference
+                </h6>
+                <div class="d-flex flex-wrap gap-2">
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="prefEmail"
+                      checked
+                    />
+                    <label class="form-check-label" for="prefEmail"
+                      >Email</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="prefSMS"
+                      checked
+                    />
+                    <label class="form-check-label" for="prefSMS">SMS</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="prefApp"
+                    />
+                    <label class="form-check-label" for="prefApp">In-App</label>
+                  </div>
+                </div>
+                <button class="btn btn-success mt-4" id="saveNotifBtn">
+                  <i class="bi bi-check-lg me-1"></i>Save Preferences
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ─────────────────────────────────
+               TAB: TRAVEL HISTORY
+          ───────────────────────────────── -->
+          <div id="tab-history" class="tab-content-section d-none">
+            <div class="section-card">
+              <div class="section-header">
+                <i class="bi bi-clock-history"></i>Travel History
+              </div>
+              <div class="section-body" id="historyList">
+                <!-- Rows injected by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /col main -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+
+    <!-- ── Footer ── -->
+    <footer><p>© FlyScanners</p></footer>
+
+    <!-- ════════════════════════════════════════
+         ADD PASSENGER MODAL
+    ═══════════════════════════════════════════ -->
+    <div class="modal fade" id="addPassengerModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title">
+              <i class="bi bi-person-plus-fill me-2"></i>Add Passenger
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="paxFirstName"
+                  placeholder="First name"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="paxLastName"
+                  placeholder="Last name"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Relationship</label>
+                <select class="form-select" id="paxRelation">
+                  <option>Spouse</option>
+                  <option>Child</option>
+                  <option>Parent</option>
+                  <option>Sibling</option>
+                  <option>Friend</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Passport No.</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="paxPassport"
+                  placeholder="e.g. P0000000A"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal">
+              Cancel
+            </button>
+            <button class="btn btn-dark" id="savePassengerBtn">
+              <i class="bi bi-check-lg me-1"></i>Save Passenger
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Toast ── -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="mainToast"
+        class="toast align-items-center text-white border-0"
+        role="alert"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="toastBody"></div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        //TAB NAVIGATION
+
+        $(".profile-nav .nav-link").on("click", function (e) {
+          e.preventDefault();
+          const tab = $(this).data("tab");
+
+          $(".profile-nav .nav-link").removeClass("active");
+          $(this).addClass("active");
+
+          $(".tab-content-section").addClass("d-none");
+          $("#tab-" + tab).removeClass("d-none");
+        });
+
+        //AVATAR UPLOAD (preview only)
+
+        $("#avatarEditBtn").on("click", () =>
+          $("#avatarInput").trigger("click")
+        );
+        $("#avatarInput").on("change", function () {
+          const file = this.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (e) => $("#avatarImg").attr("src", e.target.result);
+          reader.readAsDataURL(file);
+          showToast("Profile photo updated (preview only).", "bg-dark");
+        });
+
+        //POPULATE DAY & YEAR DROPDOWNS
+
+        function populateDays(selectId, selectedDay) {
+          const $s = $("#" + selectId)
+            .empty()
+            .append('<option value="">Day</option>');
+          for (let d = 1; d <= 31; d++) {
+            const val = String(d).padStart(2, "0");
+            $s.append(
+              `<option value="${val}" ${
+                val === selectedDay ? "selected" : ""
+              }>${d}</option>`
+            );
+          }
+        }
+        function populateYears(selectId, min, max, selectedYear) {
+          const $s = $("#" + selectId)
+            .empty()
+            .append('<option value="">Year</option>');
+          for (let y = max; y >= min; y--) {
+            $s.append(
+              `<option value="${y}" ${
+                String(y) === String(selectedYear) ? "selected" : ""
+              }>${y}</option>`
+            );
+          }
+        }
+
+        const currentYear = new Date().getFullYear();
+        // Date of birth: days 01–31, years from 1924 to current year
+        populateDays("piDobDay", "15");
+        populateYears("piDobYear", 1924, currentYear, 1990);
+
+        // Passport expiry: days 01–31, years from current year to +20
+        populateDays("ppExpDay", "31");
+        populateYears(
+          "ppExpYear",
+          currentYear,
+          currentYear + 20,
+          currentYear + 2
+        );
+
+        //PERSONAL INFO — SAVE & RESET
+
+        // Snapshot of initial values for reset
+        function snapshotPersonal() {
+          return {
+            firstName: $("#piFirstName").val(),
+            lastName: $("#piLastName").val(),
+            email: $("#piEmail").val(),
+            countryCode: $("#piCountryCode").val(),
+            phone: $("#piPhone").val(),
+            nationality: $("#piNationality").val(),
+            dobDay: $("#piDobDay").val(),
+            dobMonth: $("#piDobMonth").val(),
+            dobYear: $("#piDobYear").val(),
+            gender: $("#piGender").val(),
+            emergencyName: $("#piEmergencyName").val(),
+            emergencyCode: $("#piEmergencyCode").val(),
+            emergencyPhone: $("#piEmergencyPhone").val(),
+            ppNationality: $("#ppNationality").val(),
+            ppDocNumber: $("#ppDocNumber").val(),
+            ppExpDay: $("#ppExpDay").val(),
+            ppExpMonth: $("#ppExpMonth").val(),
+            ppExpYear: $("#ppExpYear").val(),
+            ppIssuedBy: $("#ppIssuedBy").val(),
+          };
+        }
+
+        let personalSnapshot = snapshotPersonal();
+
+        // NAV DROPDOWN — SETTINGS & LOGOUT
+
+        $("#navSettingsLink").on("click", function (e) {
+          e.preventDefault();
+          showToast("Settings page coming soon.", "bg-dark");
+        });
+
+        $("#navLogoutLink").on("click", function (e) {
+          e.preventDefault();
+          if (confirm("Are you sure you want to log out?")) {
+            showToast("You have been logged out.", "bg-dark");
+          }
+        });
+
+        // Helper: mark a field invalid / valid with Bootstrap's classes
+        function setFieldState($el, valid) {
+          $el.removeClass("is-invalid is-valid field-invalid");
+          if (valid === false) {
+            $el.addClass("is-invalid field-invalid");
+          } else if (valid === true) {
+            $el.addClass("is-valid");
+          }
+        }
+
+        // Clear all validation states when the user starts typing again
+        $("#piFirstName, #piLastName, #piEmail, #piPhone").on(
+          "input change",
+          function () {
+            $(this).removeClass("is-invalid is-valid field-invalid");
+          }
+        );
+
+        $("#savePersonalBtn").on("click", function (e) {
+          e.preventDefault(); // prevent any accidental form submission / page refresh
+
+          const $firstName = $("#piFirstName");
+          const $lastName = $("#piLastName");
+          const $email = $("#piEmail");
+          const $phone = $("#piPhone");
+
+          const first = $firstName.val().trim();
+          const last = $lastName.val().trim();
+          const email = $email.val().trim();
+          const phone = $phone.val().trim();
+
+          // Validate each required field
+          let valid = true;
+
+          if (!first) {
+            setFieldState($firstName, false);
+            valid = false;
+          } else {
+            setFieldState($firstName, true);
+          }
+
+          if (!last) {
+            setFieldState($lastName, false);
+            valid = false;
+          } else {
+            setFieldState($lastName, true);
+          }
+
+          // Simple email check: must contain @ and a dot after it
+          const emailOk =
+            email.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+          if (!emailOk) {
+            setFieldState($email, false);
+            valid = false;
+          } else {
+            setFieldState($email, true);
+          }
+
+          if (!phone) {
+            setFieldState($phone, false);
+            valid = false;
+          } else {
+            setFieldState($phone, true);
+          }
+
+          if (!valid) {
+            showToast(
+              "Please fill in all required fields correctly.",
+              "bg-danger"
+            );
+            return;
+          }
+
+          // All good — commit snapshot and fire success toast
+          personalSnapshot = snapshotPersonal();
+
+          // Brief button feedback
+          const $btn = $(this);
+          $btn
+            .prop("disabled", true)
+            .html('<i class="bi bi-check-lg me-1"></i>Saved!');
+          setTimeout(() => {
+            $btn
+              .prop("disabled", false)
+              .html('<i class="bi bi-check-lg me-1"></i>Save Changes');
+            // Remove green highlights after a moment
+            $("#piFirstName, #piLastName, #piEmail, #piPhone").removeClass(
+              "is-valid"
+            );
+          }, 2000);
+
+          showToast("Profile updated successfully!", "bg-success");
+        });
+
+        $("#resetPersonalBtn").on("click", function () {
+          $("#piFirstName").val(personalSnapshot.firstName);
+          $("#piLastName").val(personalSnapshot.lastName);
+          $("#piEmail").val(personalSnapshot.email);
+          $("#piCountryCode").val(personalSnapshot.countryCode);
+          $("#piPhone").val(personalSnapshot.phone);
+          $("#piNationality").val(personalSnapshot.nationality);
+          $("#piDobDay").val(personalSnapshot.dobDay);
+          $("#piDobMonth").val(personalSnapshot.dobMonth);
+          $("#piDobYear").val(personalSnapshot.dobYear);
+          $("#piGender").val(personalSnapshot.gender);
+          $("#piEmergencyName").val(personalSnapshot.emergencyName);
+          $("#piEmergencyCode").val(personalSnapshot.emergencyCode);
+          $("#piEmergencyPhone").val(personalSnapshot.emergencyPhone);
+          $("#ppNationality").val(personalSnapshot.ppNationality);
+          $("#ppDocNumber").val(personalSnapshot.ppDocNumber);
+          $("#ppExpDay").val(personalSnapshot.ppExpDay);
+          $("#ppExpMonth").val(personalSnapshot.ppExpMonth);
+          $("#ppExpYear").val(personalSnapshot.ppExpYear);
+          $("#ppIssuedBy").val(personalSnapshot.ppIssuedBy);
+          showToast("Changes reset to last saved values.", "bg-dark");
+        });
+
+        //SAVED PASSENGERS
+
+        let passengers = [
+          {
+            id: 1,
+            name: "Maria Dela Cruz",
+            relation: "Spouse",
+            passport: "P9876543B",
+          },
+          {
+            id: 2,
+            name: "Pedro Dela Cruz",
+            relation: "Child",
+            passport: "P1111222C",
+          },
+          {
+            id: 3,
+            name: "Lola Belen Santos",
+            relation: "Parent",
+            passport: "P5555666D",
+          },
+        ];
+        let paxNextId = 4;
+
+        function renderPassengers() {
+          const $list = $("#passengerList").empty();
+          if (passengers.length === 0) {
+            $list.html('<p class="text-muted">No saved passengers yet.</p>');
+            return;
+          }
+          passengers.forEach((p) => {
+            $list.append(`
+            <div class="passenger-item mb-2" data-pax-id="${p.id}">
+              <div class="d-flex align-items-center gap-3">
+                <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center flex-shrink-0"
+                     style="width:40px;height:40px;font-weight:700;">${p.name.charAt(
+                       0
+                     )}</div>
+                <div>
+                  <div class="fw-semibold">${p.name}</div>
+                  <div class="text-muted" style="font-size:0.8rem;">${
+                    p.relation
+                  } · ${p.passport}</div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-outline-danger delete-pax-btn flex-shrink-0" data-pax-id="${
+                p.id
+              }">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>`);
+          });
+        }
+
+        renderPassengers();
+
+        $("#savePassengerBtn").on("click", function () {
+          const first = $("#paxFirstName").val().trim();
+          const last = $("#paxLastName").val().trim();
+          if (!first || !last) {
+            showToast("Please fill in first and last name.", "bg-danger");
+            return;
+          }
+
+          passengers.push({
+            id: paxNextId++,
+            name: first + " " + last,
+            relation: $("#paxRelation").val(),
+            passport: $("#paxPassport").val().trim() || "—",
+          });
+          renderPassengers();
+          bootstrap.Modal.getInstance(
+            document.getElementById("addPassengerModal")
+          ).hide();
+          $("#paxFirstName, #paxLastName, #paxPassport").val("");
+          showToast("Passenger saved.", "bg-success");
+        });
+
+        $(document).on("click", ".delete-pax-btn", function () {
+          const id = parseInt($(this).data("pax-id"));
+          passengers = passengers.filter((p) => p.id !== id);
+          renderPassengers();
+          showToast("Passenger removed.", "bg-dark");
+        });
+
+        //NOTIFICATION TOGGLES
+
+        const emailNotifs = [
+          {
+            id: "n1",
+            label: "Booking Confirmations",
+            sub: "When a booking is confirmed or updated",
+            on: true,
+          },
+          {
+            id: "n2",
+            label: "Flight Status Alerts",
+            sub: "Delays, gate changes, cancellations",
+            on: true,
+          },
+          {
+            id: "n3",
+            label: "Check-in Reminders",
+            sub: "24h before your departure",
+            on: true,
+          },
+          {
+            id: "n4",
+            label: "Promotional Offers",
+            sub: "Special deals and new routes",
+            on: false,
+          },
+        ];
+        const pushNotifs = [
+          {
+            id: "p1",
+            label: "Real-time Flight Updates",
+            sub: "Instant gate and delay notifications",
+            on: true,
+          },
+          {
+            id: "p2",
+            label: "Boarding Reminders",
+            sub: "30 min before boarding closes",
+            on: true,
+          },
+          {
+            id: "p3",
+            label: "Exclusive App Offers",
+            sub: "Mobile-only promotions",
+            on: false,
+          },
+        ];
+
+        function renderToggles(list, containerId) {
+          const $c = $("#" + containerId).empty();
+          list.forEach((item) => {
+            $c.append(`
+            <div class="notif-row">
+              <div>
+                <div class="notif-label fw-semibold">${item.label}</div>
+                <div class="notif-sublabel">${item.sub}</div>
+              </div>
+              <div class="form-check form-switch mb-0">
+                <input class="form-check-input notif-toggle" type="checkbox" id="${
+                  item.id
+                }" ${
+              item.on ? "checked" : ""
+            } style="cursor:pointer;width:2.5em;height:1.25em;" />
+              </div>
+            </div>`);
+          });
+        }
+
+        renderToggles(emailNotifs, "emailNotifList");
+        renderToggles(pushNotifs, "pushNotifList");
+
+        $("#saveNotifBtn").on("click", () =>
+          showToast("Notification preferences saved.", "bg-success")
+        );
+
+        // TRAVEL HISTORY
+
+        const history = [
+          {
+            ref: "PAL-2025-003",
+            route: "CEB → MNL",
+            date: "2025-06-20",
+            flightNo: "PR102",
+            price: "₱2,800.00",
+            status: "Completed",
+          },
+          {
+            ref: "PAL-2025-005",
+            route: "MNL → LAX",
+            date: "2025-05-10",
+            flightNo: "PR103",
+            price: "₱75,000.00",
+            status: "Cancelled",
+          },
+          {
+            ref: "PAL-2024-088",
+            route: "MNL → HKG",
+            date: "2024-12-24",
+            flightNo: "PR302",
+            price: "₱17,500.00",
+            status: "Completed",
+          },
+          {
+            ref: "PAL-2024-055",
+            route: "MNL → NRT",
+            date: "2024-09-01",
+            flightNo: "PR432",
+            price: "₱21,000.00",
+            status: "Completed",
+          },
+          {
+            ref: "PAL-2024-021",
+            route: "DAV → MNL",
+            date: "2024-03-15",
+            flightNo: "PR206",
+            price: "₱3,200.00",
+            status: "Completed",
+          },
+        ];
+
+        const $hl = $("#historyList");
+        history.forEach((h) => {
+          const statusColor = h.status === "Completed" ? "#198754" : "#dc3545";
+          $hl.append(`
+          <div class="history-row">
+            <div class="history-icon"><i class="bi bi-airplane-fill"></i></div>
+            <div class="flex-grow-1">
+              <div class="fw-semibold">${h.route} <small class="text-muted fw-normal">${h.flightNo}</small></div>
+              <div class="text-muted" style="font-size:0.8rem;">${h.date} · ${h.ref}</div>
+            </div>
+            <div class="text-end">
+              <div class="fw-semibold">${h.price}</div>
+              <span style="font-size:0.75rem;color:${statusColor};font-weight:600;">${h.status}</span>
+            </div>
+          </div>`);
+        });
+
+        //ADD CARD PLACEHOLDER
+
+        $("#addCardBtn").on("click", () =>
+          showToast("Add Card — UI mockup only, not functional.", "bg-dark")
+        );
+
+        //TOAST HELPER
+
+        function showToast(msg, cls) {
+          const $t = $("#mainToast");
+          $t.removeClass(
+            "bg-danger bg-success bg-warning bg-dark text-dark"
+          ).addClass(cls);
+          $("#toastBody").text(msg);
+          bootstrap.Toast.getOrCreateInstance($t[0], { delay: 3000 }).show();
+        }
+      });
+    </script>
+  </body>
+</html>

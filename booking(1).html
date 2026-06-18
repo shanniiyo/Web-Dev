@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Flight - FlyScanners</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="design.css" />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <!-- UPDATE LINKS -->
+    <div class="fixed-top">
+      <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="index.html"> FlyScanners </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainMenu"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="mainMenu">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html"> Home </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="search.html"> Search Flights </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="booking(1).html">
+                  Book Flight
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"> My Reservations </a>
+              </li>
+              <div class="dropdown">
+                <button
+                  class="btn btn-success dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Account
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><a class="dropdown-item" href="#">Log Out</a></li>
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" style="margin-top: 100px">
+      <!-- Progress Stepper -->
+      <div class="card shadow-sm p-4 mb-4">
+        <h2 class="text-center mb-4">Complete Your Booking</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-10">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="text-center">
+                <div
+                  id="step1-indicator"
+                  class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto"
+                  style="width: 50px; height: 50px; font-size: 20px"
+                >
+                  1
+                </div>
+                <p class="mt-2 fw-bold">Flight Details</p>
+              </div>
+              <div class="flex-grow-1 mx-3">
+                <hr id="line1" class="border-primary" />
+              </div>
+              <div class="text-center">
+                <div
+                  id="step2-indicator"
+                  class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto"
+                  style="width: 50px; height: 50px; font-size: 20px"
+                >
+                  2
+                </div>
+                <p class="mt-2 fw-bold">Passenger Information</p>
+              </div>
+              <div class="flex-grow-1 mx-3">
+                <hr id="line2" class="border-secondary" />
+              </div>
+              <div class="text-center">
+                <div
+                  id="step3-indicator"
+                  class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto"
+                  style="width: 50px; height: 50px; font-size: 20px"
+                >
+                  3
+                </div>
+                <p class="mt-2 fw-bold">Payment</p>
+              </div>
+              <div class="flex-grow-1 mx-3">
+                <hr id="line3" class="border-secondary" />
+              </div>
+              <div class="text-center">
+                <div
+                  id="step4-indicator"
+                  class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto"
+                  style="width: 50px; height: 50px; font-size: 20px"
+                >
+                  4
+                </div>
+                <p class="mt-2 fw-bold">Confirmation</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 1: Flight Details -->
+      <div id="step1" class="card shadow-sm p-4 mb-4">
+        <!-- Flight Details -->
+        <div class="row mb-4">
+          <div class="col-md-6">
+            <div class="border rounded p-3 mb-3">
+              <h5>Departure Flight</h5>
+              <p><strong>From:</strong> Manila - Philippines</p>
+              <p><strong>To:</strong> Cebu - Philippines</p>
+              <p><strong>Date:</strong> June 20, 2026</p>
+              <p><strong>Time:</strong> 08:00 - 10:30</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="border rounded p-3 mb-3">
+              <h5>Return Flight</h5>
+              <p><strong>From:</strong> Cebu - Philippines</p>
+              <p><strong>To:</strong> Manila - Philippines</p>
+              <p><strong>Date:</strong> June 25, 2026</p>
+              <p><strong>Time:</strong> 14:00 - 16:30</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seat Selection System -->
+        <div class="border rounded p-4 mb-4">
+          <h4 class="mb-3">Seat Selection</h4>
+
+          <!-- Seat Legend -->
+          <div class="row mb-4">
+            <div class="col-md-12">
+              <h6>Seat Status Legend:</h6>
+              <div class="d-flex flex-wrap gap-3">
+                <span class="badge bg-success">Available</span>
+                <span class="badge bg-primary">Selected</span>
+                <span class="badge bg-secondary">Occupied</span>
+                <span class="badge bg-warning">Premium - +₱2000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Seat Map (Bootstrap Grid) -->
+          <div class="row justify-content-center mb-4">
+            <div class="col-md-8">
+              <div class="seat-map bg-light p-4 rounded">
+                <div class="text-center mb-3"><strong>Cockpit</strong></div>
+                <!-- Row 1 -->
+                <div class="row g-2 mb-2 justify-content-center">
+                  <div
+                    class="col-auto seat available"
+                    data-seat="1A"
+                    data-premium="true"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-warning text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      1A
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="1B"
+                    data-premium="true"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-warning text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      1B
+                    </div>
+                  </div>
+                  <div class="col-auto">&nbsp;</div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="1C"
+                    data-premium="true"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-warning text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      1C
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="1D"
+                    data-premium="true"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-warning text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      1D
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="row g-2 mb-2 justify-content-center">
+                  <div
+                    class="col-auto seat available"
+                    data-seat="2A"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      2A
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat occupied"
+                    data-seat="2B"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-secondary text-white text-center"
+                      style="min-width: 50px; cursor: not-allowed"
+                    >
+                      2B
+                    </div>
+                  </div>
+                  <div class="col-auto">&nbsp;</div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="2C"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      2C
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="2D"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      2D
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 3 -->
+                <div class="row g-2 mb-2 justify-content-center">
+                  <div
+                    class="col-auto seat available"
+                    data-seat="3A"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      3A
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="3B"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      3B
+                    </div>
+                  </div>
+                  <div class="col-auto">&nbsp;</div>
+                  <div
+                    class="col-auto seat occupied"
+                    data-seat="3C"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-secondary text-white text-center"
+                      style="min-width: 50px; cursor: not-allowed"
+                    >
+                      3C
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="3D"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      3D
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 4 -->
+                <div class="row g-2 mb-2 justify-content-center">
+                  <div
+                    class="col-auto seat available"
+                    data-seat="4A"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      4A
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="4B"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      4B
+                    </div>
+                  </div>
+                  <div class="col-auto">&nbsp;</div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="4C"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      4C
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat occupied"
+                    data-seat="4D"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-secondary text-white text-center"
+                      style="min-width: 50px; cursor: not-allowed"
+                    >
+                      4D
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 5 -->
+                <div class="row g-2 mb-2 justify-content-center">
+                  <div
+                    class="col-auto seat available"
+                    data-seat="5A"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      5A
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat occupied"
+                    data-seat="5B"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-secondary text-white text-center"
+                      style="min-width: 50px; cursor: not-allowed"
+                    >
+                      5B
+                    </div>
+                  </div>
+                  <div class="col-auto">&nbsp;</div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="5C"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      5C
+                    </div>
+                  </div>
+                  <div
+                    class="col-auto seat available"
+                    data-seat="5D"
+                    onclick="selectSeat(this)"
+                  >
+                    <div
+                      class="p-2 rounded bg-success text-white text-center"
+                      style="min-width: 50px; cursor: pointer"
+                    >
+                      5D
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Selected Seat Display -->
+          <div
+            id="selectedSeatInfo"
+            class="alert alert-info"
+            style="display: none"
+          >
+            <strong>Selected Seat:</strong> <span id="selectedSeat"></span>
+          </div>
+        </div>
+
+        <!-- Extra Services Section -->
+        <div class="border rounded p-4 mb-4">
+          <h4 class="mb-3">Extra Services</h4>
+          <div class="row g-4">
+            <!-- Additional Baggage -->
+            <div class="col-md-6">
+              <label for="baggageQuantity" class="form-label"
+                >Additional Baggage: <span id="baggageQty">0</span> pieces
+                (+₱500 each)</label
+              >
+              <input
+                type="range"
+                class="form-range"
+                id="baggageQuantity"
+                min="0"
+                max="5"
+                value="0"
+                onchange="updateBaggage(this.value)"
+                oninput="updateBaggage(this.value)"
+              />
+              <small class="text-muted"
+                >Additional baggage costs ₱500 per piece</small
+              >
+            </div>
+
+            <!-- Priority Boarding -->
+            <div class="col-md-6">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="priorityBoarding"
+                  onchange="updateTotalPrice()"
+                />
+                <label class="form-check-label" for="priorityBoarding"
+                  >Priority Boarding (+₱1000)</label
+                >
+              </div>
+              <small class="text-muted"
+                >Board the aircraft before general boarding</small
+              >
+            </div>
+
+            <!-- Travel Insurance -->
+            <div class="col-md-6">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="travelInsurance"
+                  onchange="updateTotalPrice()"
+                />
+                <label class="form-check-label" for="travelInsurance"
+                  >Travel Insurance (+₱1000)</label
+                >
+              </div>
+              <small class="text-muted"
+                >Coverage for trip cancellations and medical emergencies</small
+              >
+            </div>
+
+            <!-- Lounge Access -->
+            <div class="col-md-6">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="loungeAccess"
+                  onchange="updateTotalPrice()"
+                />
+                <label class="form-check-label" for="loungeAccess"
+                  >Airport Lounge Access (+₱500)</label
+                >
+              </div>
+              <small class="text-muted"
+                >Access to exclusive airport lounges with complimentary
+                amenities</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Meal Selection -->
+        <div class="border rounded p-4 mb-4">
+          <h4 class="mb-3">Meal Selection</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="mealSelect" class="form-label"
+                >Select your meal preference:</label
+              >
+              <select
+                class="form-select"
+                id="mealSelect"
+                onchange="updateMealDetails()"
+              >
+                <option value="standard" selected>Standard - Included</option>
+                <option value="vegetarian">Vegetarian - +₱150</option>
+                <option value="vegan">Vegan - +₱150</option>
+                <option value="halal">Halal - +₱150</option>
+                <option value="kosher">Kosher - +₱150</option>
+                <option value="glutenfree">Gluten-Free - +₱150</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <div id="mealDescription" class="p-3 bg-light rounded">
+                <h6>Standard Meal</h6>
+                <p class="mb-0">
+                  Regular in-flight meal with main course, side, and dessert.
+                  Complimentary beverage included.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price Summary -->
+        <div class="border rounded p-4">
+          <h4 class="mb-3">Price Summary</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <p>Base Fare: ₱2500.00</p>
+              <p id="mealCost">Meal: ₱0.00</p>
+              <p id="seatCost">Seat Fee: ₱0.00</p>
+              <p id="baggageCost">Additional Baggage: ₱0.00</p>
+              <p id="servicesCost">Extra Services: ₱0.00</p>
+              <hr />
+              <h4>Total: <span id="finalTotal">₱2500.00</span></h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-end mt-4">
+          <button class="btn btn-success btn-lg" onclick="nextStep(2)">
+            Continue to Passenger Information
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Passenger Information -->
+      <div id="step2" class="card shadow-sm p-4 mb-4" style="display: none">
+        <h3 class="mb-4">Passenger Information</h3>
+        <form id="passengerForm" onsubmit="return validateForm()">
+          <div class="row g-3">
+            <!-- Full Name -->
+            <div class="col-md-6">
+              <label for="fullName" class="form-label"
+                ><b>Full Name *</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+              />
+              <div
+                id="fullNameError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please enter your full name
+              </div>
+            </div>
+            <!-- Email Address -->
+            <div class="col-md-6">
+              <label for="email" class="form-label"
+                ><b>Email Address *</b></label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+              <div
+                id="emailError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please enter a valid email address
+              </div>
+            </div>
+            <!-- Contact Number -->
+            <div class="col-md-6">
+              <label for="contactNumber" class="form-label"
+                ><b>Contact Number *</b></label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                id="contactNumber"
+                placeholder="Enter your contact number"
+                required
+              />
+              <div
+                id="contactError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please enter a valid contact number
+              </div>
+            </div>
+            <!-- Passport Number -->
+            <div class="col-md-6">
+              <label for="passportNumber" class="form-label"
+                ><b>Passport Number *</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="passportNumber"
+                placeholder="Enter your passport number"
+                required
+              />
+              <div
+                id="passportError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please enter your passport number
+              </div>
+            </div>
+            <!-- Nationality -->
+            <div class="col-md-6">
+              <label for="nationality" class="form-label"
+                ><b>Nationality *</b></label
+              >
+              <select class="form-select" id="nationality" required>
+                <option value="" selected>Select your nationality</option>
+                <option value="philippines">Philippines</option>
+                <option value="usa">United States</option>
+                <option value="japan">Japan</option>
+                <option value="china">China</option>
+                <option value="hongkong">Hong Kong</option>
+                <option value="taiwan">Taiwan</option>
+                <option value="thailand">Thailand</option>
+              </select>
+              <div
+                id="nationalityError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please select your nationality
+              </div>
+            </div>
+            <!-- Date of Birth -->
+            <div class="col-md-6">
+              <label for="dateOfBirth" class="form-label"
+                ><b>Date of Birth *</b></label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="dateOfBirth"
+                required
+              />
+              <div
+                id="dobError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please enter your date of birth
+              </div>
+            </div>
+            <!-- Gender Selection -->
+            <div class="col-md-6">
+              <label class="form-label"><b>Gender *</b></label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="male"
+                    value="male"
+                    required
+                  />
+                  <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="female"
+                    value="female"
+                  />
+                  <label class="form-check-label" for="female">Female</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="other"
+                    value="other"
+                  />
+                  <label class="form-check-label" for="other">Other</label>
+                </div>
+              </div>
+              <div
+                id="genderError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please select your gender
+              </div>
+            </div>
+            <!-- Emergency Contact -->
+            <div class="col-md-6">
+              <label for="emergencyContact" class="form-label"
+                ><b>Emergency Contact *</b></label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                id="emergencyContact"
+                placeholder="Emergency contact number"
+                required
+              />
+              <div
+                id="emergencyError"
+                class="text-danger small mt-1"
+                style="display: none"
+              >
+                Please enter an emergency contact number
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg"
+              onclick="prevStep(1)"
+            >
+              Back
+            </button>
+            <button type="submit" class="btn btn-success btn-lg">
+              Continue to Payment
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Payment -->
+      <div id="step3" class="card shadow-sm p-4 mb-4" style="display: none">
+        <h3 class="mb-4">Payment Details</h3>
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="cardNumber" class="form-label"
+                ><b>Card Number *</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="cardNumber"
+                placeholder="1234 5678 9012 3456"
+                required
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="expiryDate" class="form-label"
+                ><b>Expiry Date *</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="expiryDate"
+                placeholder="MM/YY"
+                required
+              />
+            </div>
+            <div class="col-md-3">
+              <label for="cvv" class="form-label"><b>CVV *</b></label>
+              <input
+                type="text"
+                class="form-control"
+                id="cvv"
+                placeholder="123"
+                required
+              />
+            </div>
+            <div class="col-md-12">
+              <label for="cardHolder" class="form-label"
+                ><b>Cardholder Name *</b></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="cardHolder"
+                placeholder="Name on card"
+                required
+              />
+            </div>
+          </div>
+          <div class="border rounded p-3 mt-4">
+            <h4>Payment Summary</h4>
+            <div class="d-flex justify-content-between">
+              <span>Base Fare</span>
+              <span>₱2500.00</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Extra Services</span>
+              <span id="paymentExtras">₱0.00</span>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>Taxes & Fees</span>
+              <span>₱500.00</span>
+            </div>
+            <hr />
+            <div class="d-flex justify-content-between">
+              <strong>Total</strong>
+              <strong id="paymentFinalTotal">₱3000.00</strong>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg"
+              onclick="prevStep(2)"
+            >
+              Back
+            </button>
+            <button
+              type="button"
+              class="btn btn-success btn-lg"
+              onclick="nextStep(4)"
+            >
+              Confirm Booking
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 4: Confirmation -->
+      <div
+        id="step4"
+        class="card shadow-sm p-4 mb-4 text-center"
+        style="display: none"
+      >
+        <div class="py-5">
+          <div
+            class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto mb-4"
+            style="width: 100px; height: 100px; font-size: 50px"
+          >
+            ✓
+          </div>
+          <h2>Booking Confirmed!</h2>
+          <p class="lead mb-4">
+            Your flight has been successfully booked. A confirmation email has
+            been sent to your email address.
+          </p>
+          <div class="border rounded p-4 d-inline-block mb-4">
+            <h5>
+              Booking Reference:
+              <span class="text-primary">PAL20260617001</span>
+            </h5>
+          </div>
+          <br />
+          <a href="index.html" class="btn btn-dark btn-lg">Return to Home</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© FlyScanners</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript -->
+
+    <script>
+      function nextStep(step) {
+        // Hide current step
+        document.getElementById("step" + (step - 1)).style.display = "none";
+        // Show next step
+        document.getElementById("step" + step).style.display = "block";
+        // Update indicators
+        updateStepIndicators(step);
+        // Scroll to top
+        window.scrollTo({ top: 100, behavior: "smooth" });
+      }
+
+      function prevStep(step) {
+        // Hide current step
+        document.getElementById("step" + (step + 1)).style.display = "none";
+        // Show previous step
+        document.getElementById("step" + step).style.display = "block";
+        // Update indicators
+        updateStepIndicators(step);
+        // Scroll to top
+        window.scrollTo({ top: 100, behavior: "smooth" });
+      }
+
+      function updateStepIndicators(currentStep) {
+        for (let i = 1; i <= 4; i++) {
+          const indicator = document.getElementById("step" + i + "-indicator");
+          const line = document.getElementById("line" + i);
+
+          if (i < currentStep) {
+            indicator.className =
+              "rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto";
+            indicator.innerHTML = "✓";
+            if (line) line.className = "border-success";
+          } else if (i === currentStep) {
+            indicator.className =
+              "rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto";
+            indicator.innerHTML = i;
+            if (line) line.className = "border-primary";
+          } else {
+            indicator.className =
+              "rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto";
+            indicator.innerHTML = i;
+            if (line) line.className = "border-secondary";
+          }
+        }
+      }
+
+      function validateForm() {
+        let isValid = true;
+
+        // Reset all errors
+        const errors = document.querySelectorAll(".text-danger");
+        errors.forEach((error) => (error.style.display = "none"));
+
+        // Validate Full Name
+        const fullName = document.getElementById("fullName").value.trim();
+        if (!fullName) {
+          document.getElementById("fullNameError").style.display = "block";
+          isValid = false;
+        }
+
+        // Validate Email
+        const email = document.getElementById("email").value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+          document.getElementById("emailError").style.display = "block";
+          isValid = false;
+        }
+
+        // Validate Contact Number
+        const contact = document.getElementById("contactNumber").value.trim();
+        if (!contact) {
+          document.getElementById("contactError").style.display = "block";
+          isValid = false;
+        }
+
+        // Validate Passport Number
+        const passport = document.getElementById("passportNumber").value.trim();
+        if (!passport) {
+          document.getElementById("passportError").style.display = "block";
+          isValid = false;
+        }
+
+        // Validate Nationality
+        const nationality = document.getElementById("nationality").value;
+        if (!nationality) {
+          document.getElementById("nationalityError").style.display = "block";
+          isValid = false;
+        }
+
+        // Validate Date of Birth
+        const dob = document.getElementById("dateOfBirth").value;
+        if (!dob) {
+          document.getElementById("dobError").style.display = "block";
+          isValid = false;
+        }
+
+        // Validate Gender
+        const genderSelected = document.querySelector(
+          'input[name="gender"]:checked'
+        );
+        if (!genderSelected) {
+          document.getElementById("genderError").style.display = "block";
+          isValid = false;
+        }
+
+        // Validate Emergency Contact
+        const emergency = document
+          .getElementById("emergencyContact")
+          .value.trim();
+        if (!emergency) {
+          document.getElementById("emergencyError").style.display = "block";
+          isValid = false;
+        }
+
+        if (isValid) {
+          nextStep(3);
+          return false;
+        }
+
+        return false;
+      }
+
+      // Meal selection functions
+      const mealDetails = {
+        standard: {
+          name: "Standard Meal",
+          description:
+            "Regular in-flight meal with main course, side, and dessert. Complimentary beverage included.",
+          cost: 0,
+        },
+        vegetarian: {
+          name: "Vegetarian Meal",
+          description:
+            "Plant-based meal with fresh vegetables, grains, and dairy-free options where applicable.",
+          cost: 150,
+        },
+        vegan: {
+          name: "Vegan Meal",
+          description:
+            "100% plant-based meal with no animal products, including dairy and honey.",
+          cost: 150,
+        },
+        halal: {
+          name: "Halal Meal",
+          description:
+            "Meal prepared according to Islamic dietary guidelines, containing no pork or prohibited ingredients.",
+          cost: 150,
+        },
+        kosher: {
+          name: "Kosher Meal",
+          description:
+            "Meal prepared according to Jewish dietary laws, certified kosher and packaged separately.",
+          cost: 150,
+        },
+        glutenfree: {
+          name: "Gluten-Free Meal",
+          description:
+            "Meal free from wheat, barley, and rye, suitable for those with celiac disease or gluten sensitivity.",
+          cost: 150,
+        },
+      };
+
+      function updateMealDetails() {
+        const select = document.getElementById("mealSelect");
+        const selectedMeal = select.value;
+        const meal = mealDetails[selectedMeal];
+
+        document.getElementById("mealDescription").innerHTML = `
+                <h6>${meal.name}</h6>
+                <p class="mb-0">${meal.description}</p>
+            `;
+
+        updateTotalPrice();
+      }
+
+      // Seat selection functions
+      let currentlySelectedSeat = null;
+
+      function selectSeat(element) {
+        const seat = element.querySelector("div");
+
+        // Check if seat is occupied
+        if (element.classList.contains("occupied")) {
+          alert("This seat is already occupied. Please select another seat.");
+          return;
+        }
+
+        // Deselect previous seat
+        if (currentlySelectedSeat) {
+          const prevSeat = currentlySelectedSeat.querySelector("div");
+          if (currentlySelectedSeat.dataset.premium === "true") {
+            prevSeat.className =
+              "p-2 rounded bg-warning text-white text-center";
+          } else {
+            prevSeat.className =
+              "p-2 rounded bg-success text-white text-center";
+          }
+          prevSeat.style.cursor = "pointer";
+        }
+
+        // Select new seat
+        if (currentlySelectedSeat !== element) {
+          currentlySelectedSeat = element;
+          seat.className = "p-2 rounded bg-primary text-white text-center";
+          seat.style.cursor = "pointer";
+
+          // Show selected seat info
+          document.getElementById("selectedSeatInfo").style.display = "block";
+          document.getElementById("selectedSeat").textContent =
+            element.dataset.seat;
+        } else {
+          // Deselect if clicking the same seat
+          currentlySelectedSeat = null;
+          document.getElementById("selectedSeatInfo").style.display = "none";
+        }
+
+        updateTotalPrice();
+      }
+
+      // Extra services functions
+      let baggageCount = 0;
+
+      function updateBaggage(value) {
+        baggageCount = parseInt(value);
+        document.getElementById("baggageQty").textContent = value;
+        updateTotalPrice();
+      }
+
+      // Total price calculation
+      function updateTotalPrice() {
+        let baseFare = 2500; // Base fare for the flight
+        let total = baseFare;
+
+        // Calculate meal cost
+        const mealSelect = document.getElementById("mealSelect");
+        const selectedMeal = mealSelect.value;
+        const mealCost = mealDetails[selectedMeal].cost;
+        document.getElementById(
+          "mealCost"
+        ).textContent = `Meal: ₱${mealCost.toFixed(2)}`;
+        total += mealCost;
+
+        // Calculate seat cost
+        let seatCost = 0;
+        if (
+          currentlySelectedSeat &&
+          currentlySelectedSeat.dataset.premium === "true"
+        ) {
+          seatCost = 2000;
+        }
+        document.getElementById(
+          "seatCost"
+        ).textContent = `Seat Fee: ₱${seatCost.toFixed(2)}`;
+        total += seatCost;
+
+        // Calculate baggage cost
+        const baggageCost = baggageCount * 500;
+        document.getElementById(
+          "baggageCost"
+        ).textContent = `Additional Baggage: ₱${baggageCost.toFixed(2)}`;
+        total += baggageCost;
+
+        // Calculate extra services cost
+        let servicesCost = 0;
+        if (document.getElementById("priorityBoarding").checked)
+          servicesCost += 1000;
+        if (document.getElementById("travelInsurance").checked)
+          servicesCost += 1000;
+        if (document.getElementById("loungeAccess").checked)
+          servicesCost += 500;
+        document.getElementById(
+          "servicesCost"
+        ).textContent = `Extra Services: ₱${servicesCost.toFixed(2)}`;
+        total += servicesCost;
+
+        // Update final total
+        document.getElementById("finalTotal").textContent = `₱${total.toFixed(
+          2
+        )}`;
+
+        // Update each line item in payment summary using explicit IDs
+        let taxes = 500; // Fixed taxes & fees
+        let extrasTotal = mealCost + seatCost + baggageCost + servicesCost;
+        let finalPaymentTotal = baseFare + extrasTotal + taxes; // Adding fixed taxes & fees
+        document.getElementById(
+          "paymentExtras"
+        ).textContent = `₱${extrasTotal.toFixed(2)}`;
+        document.getElementById(
+          "paymentFinalTotal"
+        ).textContent = `₱${finalPaymentTotal.toFixed(2)}`;
+      }
+    </script>
+  </body>
+</html>

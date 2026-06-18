@@ -3,7 +3,7 @@ body {
 }
 
 .custom-navbar {
-  background-color: rgb(70, 70, 255);
+  background-color: #1e3a8a;
 }
 
 .hero-section {
@@ -30,9 +30,9 @@ body {
 
 footer {
   margin-top: 40px;
-  /* padding: 20px; */
+  padding: 20px;
   text-align: center;
-  background-color: #212529;
+  background-color: #1e3a8a;
   color: white;
 }
 
@@ -48,4 +48,46 @@ footer {
 #carousel-caption {
   text-align: center;
   font-size: medium;
+}
+
+/* booking css */
+
+.sticky-summary {
+  position: sticky;
+  top: 100px;
+}
+
+@media (max-width: 991px) {
+  .sticky-summary {
+    position: static;
+    margin-top: 1.5rem;
+  }
+}
+
+.booking-summary .summary-section p {
+  margin-bottom: 0.25rem;
+}
+
+/* Flight results */
+
+.flight-card {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.flight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.airline-logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.sidebar {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
 }
