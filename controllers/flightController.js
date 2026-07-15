@@ -30,6 +30,11 @@ exports.createFlight = async (req, res) => {
       ticketPrice,
     } = req.body;
 
+    // Server-side validation
+    if (!flightNumber || !airline || !origin || !destination || !departureDateTime || !arrivalDateTime || !availableSeats || !ticketPrice) {
+      return res.status(400).send("All fields are required");
+    }
+
     const newFlight = new Flight({
       flightNumber,
       airline,
@@ -115,5 +120,17 @@ exports.searchFlights = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Error searching flights" });
+  }
+};
+
+exports.getAllFlights = async (req, res) => {
+  try {
+    const flights = await Flight.find().sort({ departureDateTime: 1 });
+    console.log("Flights found:", flights); // ← ADD THIS LINE
+    console.log("Number of flights:", flights.length); // ← ADD THIS LINE
+    res.render("admin-flights", { flights });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading flights");
   }
 };

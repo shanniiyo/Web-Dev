@@ -41,6 +41,7 @@ exports.createReservation = async (req, res) => {
     const { flightId, passengerName, email, passportNumber, seatNumber } =
       req.body;
 
+    // Server-side validation
     if (!passengerName || !email || !passportNumber) {
       return res.status(400).json({ error: "Missing required passenger information" });
     }
@@ -50,10 +51,12 @@ exports.createReservation = async (req, res) => {
       return res.status(404).json({ error: "Flight not found" });
     }
 
+    // Business rule: flight must have available seats
     if (flight.availableSeats <= 0) {
       return res.status(400).json({ error: "This flight has no available seats" });
     }
 
+    // Business rule: seat can only be assigned to one passenger on this flight
     const seatTaken = await Reservation.findOne({
       flight: flight._id,
       seatNumber,
@@ -79,6 +82,7 @@ exports.createReservation = async (req, res) => {
 
     await reservation.save();
 
+    // Decrease available seats
     flight.availableSeats -= 1;
     await flight.save();
 
@@ -100,6 +104,7 @@ exports.updateSeat = async (req, res) => {
       return res.status(404).json({ error: "Reservation not found" });
     }
 
+    // Business rule: new seat must not already be taken on this flight
     const seatTaken = await Reservation.findOne({
       flight: reservation.flight,
       seatNumber,
@@ -137,6 +142,7 @@ exports.cancelReservation = async (req, res) => {
     reservation.bookingStatus = "Cancelled";
     await reservation.save();
 
+    // Give the seat back
     await Flight.findByIdAndUpdate(reservation.flight, {
       $inc: { availableSeats: 1 },
     });

@@ -7,23 +7,38 @@ const app = express();
 // Connect to MongoDB
 require("./db/con");
 
-// // Middleware
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+// Middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Static files (CSS, JS, Images)
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, ".", "public")));
 
 // Handlebars
 app.engine(
   "hbs",
   expresshbs.engine({
     extname: ".hbs",
+    helpers: {
+      eq: (a, b) => a === b,
+      formatDate: (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        return d.toLocaleString("en-PH", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        });
+      },
+    },
   })
 );
 
 app.set("view engine", "hbs");
-app.set("views", "./views");
+app.set("views", path.join(__dirname, ".", "views"));
 
 // =====================
 // Routes
@@ -39,10 +54,9 @@ app.get("/search", (req, res) => {
   res.render("search");
 });
 
-// Reservations Page
-app.get("/reservations", (req, res) => {
-  res.render("reservations");
-});
+// 2. Flight Management + 5. Reservation Management
+app.use("/", require("./routes/flightRoutes"));
+app.use("/", require("./routes/reservationRoutes"));
 
 // =====================
 // Start Server
@@ -50,6 +64,6 @@ app.get("/reservations", (req, res) => {
 
 const PORT = 3001;
 
-app.listen(3001, () => {
-  console.log(`Server running at http://localhost:3001`);
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
