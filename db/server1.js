@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static files (CSS, JS, Images)
-app.use(express.static(path.join(__dirname, "..", "public")));
+app.use(express.static(path.join(__dirname, ".", "public")));
 
 // Handlebars
 app.engine(
@@ -26,7 +26,7 @@ app.engine(
 );
 
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "..", "views"));
+app.set("views", path.join(__dirname, ".", "views"));
 
 // =====================
 // Routes
@@ -43,8 +43,8 @@ app.get("/search", (req, res) => {
 });
 
 // 2. Flight Management + 5. Reservation Management
-app.use("/", require("../routes/flightRoutes"));
-app.use("/", require("../routes/reservationRoutes"));
+app.use("/", require("./routes/flightRoutes"));
+app.use("/", require("./routes/reservationRoutes"));
 
 // =====================
 // Start Server
