@@ -84,6 +84,11 @@ exports.createReservation = async (req, res) => {
 
     await reservation.save();
 
+    const seatIndex = flight.seats.findIndex(seat => seat.seatNumber === seatNumber);
+    if (seatIndex !== -1) {
+      flight.seats[seatIndex].isAvailable = false;
+    }
+
     // Decrease available seats
     flight.availableSeats -= 1;
     await flight.save();
@@ -120,6 +125,19 @@ exports.updateSeat = async (req, res) => {
     reservation.seatNumber = seatNumber;
     await reservation.save();
 
+    await Flight.findByIdAndUpdate(reservation.flight, {
+      $set: { "seats.$[oldElem].isAvailable": true }
+    }, {
+      arrayFilters: [{ "oldElem.seatNumber": reservation.seatNumber }]
+    });
+
+    // Mark new seat as unavailable
+    await Flight.findByIdAndUpdate(reservation.flight, {
+      $set: { "seats.$[newElem].isAvailable": false }
+    }, {
+      arrayFilters: [{ "newElem.seatNumber": seatNumber }]
+    });
+
     res.json(reservation);
   } catch (err) {
     console.error(err);
@@ -147,7 +165,10 @@ exports.cancelReservation = async (req, res) => {
     // Give the seat back
     await Flight.findByIdAndUpdate(reservation.flight, {
       $inc: { availableSeats: 1 },
-    });
+      $set: { "seats.$[elem].isAvailable": true }
+  }, {
+    arrayFilters: [{ "elem.seatNumber": reservation.seatNumber }]
+  });
 
     res.json({ success: true, reservation });
   } catch (err) {

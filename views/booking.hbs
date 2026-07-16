@@ -24,7 +24,7 @@
 
           <div class="container">
 
-            <a class="navbar-brand" href="#"> FlyScanners </a>
+            <a class="navbar-brand" href="/"> FlyScanners </a>
 
             <button
               class="navbar-toggler"
@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="mainMenu">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#"> Home </a>
+                  <a class="nav-link active" href="/"> Home </a>
                 </li>
 
                 <li class="nav-item">
@@ -183,274 +183,121 @@
             </div>
           </div>
 
-          <!-- Interactive Seat Map (Bootstrap Grid) -->
+          <!-- Interactive Seat Map (Bootstrap Grid) - Dynamically generated from flight seats array -->
           <div class="row justify-content-center mb-4">
             <div class="col-md-8">
               <div class="seat-map bg-light p-4 rounded">
                 <div class="text-center mb-3"><strong>Cockpit</strong></div>
-                <!-- Row 1 -->
+                <!-- Row 1 (Premium seats) -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1A"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1B"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1C"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1D"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '1')}}
+                      {{#if (eq seatNumber '1C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        data-premium="true"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-warning{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 2 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="2A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      2A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="2B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      2B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="2C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      2C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="2D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      2D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '2')}}
+                      {{#if (eq seatNumber '2C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 3 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="3A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      3A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="3B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      3B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="3C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      3C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="3D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      3D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '3')}}
+                      {{#if (eq seatNumber '3C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 4 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="4A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      4A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="4B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      4B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="4C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      4C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="4D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      4D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '4')}}
+                      {{#if (eq seatNumber '4C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 5 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="5A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      5A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="5B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      5B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="5C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      5C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="5D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      5D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '5')}}
+                      {{#if (eq seatNumber '5C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
               </div>
             </div>
@@ -867,7 +714,8 @@
             <button
               type="button"
               class="btn btn-success btn-lg"
-              onclick="nextStep(4)"
+              onclick="createBooking()"
+              id="confirmBookingBtn"
             >
               Confirm Booking
             </button>
@@ -896,7 +744,7 @@
           <div class="border rounded p-4 d-inline-block mb-4">
             <h5>
               Booking Reference:
-              <span class="text-primary">PAL20260617001</span>
+              <span class="text-primary" id="bookingReference">Loading...</span>
             </h5>
           </div>
           <br />
@@ -1172,9 +1020,58 @@
           let finalPaymentTotal = baseFare + extrasTotal + taxes; // Adding fixed taxes & fees
           document.getElementById('paymentExtras').textContent = `₱${extrasTotal.toFixed(2)}`;
           document.getElementById('paymentFinalTotal').textContent = `₱${finalPaymentTotal.toFixed(2)}`;
+        }
           
+        // Booking creation
+        async function createBooking() {
+            // Basic validation first
+            if (!currentlySelectedSeat) return alert('Please select a seat first!');
+            
+            const flightId = new URLSearchParams(window.location.search).get('flightId');
+            if (!flightId) return alert('Invalid flight - please search again.');
 
-      }
+            // Get form values
+            const passengerName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const passportNumber = document.getElementById('passportNumber').value.trim();
+            
+            if (!passengerName || !email || !passportNumber) return alert('Fill all passenger info!');
+
+            // Disable button
+            const btn = document.getElementById('confirmBookingBtn');
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+
+            try {
+                // Send to backend
+                const res = await fetch('/api/reservations', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        flightId,
+                        passengerName,
+                        email,
+                        passportNumber,
+                        seatNumber: currentlySelectedSeat.dataset.seat
+                    })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    // Update UI and go to confirmation
+                    document.getElementById('bookingReference').textContent = data.reservationNumber;
+                    nextStep(4);
+                } else {
+                    alert('Error: ' + data.error);
+                    btn.disabled = false;
+                    btn.textContent = 'Confirm Booking';
+                }
+            } catch (err) {
+                alert('Booking failed - try again');
+                btn.disabled = false;
+                btn.textContent = 'Confirm Booking';
+            }
+        }
     </script>
   </body>
 </html>

@@ -22,6 +22,9 @@ app.engine(
     extname: ".hbs",
     helpers: {
       eq: (a, b) => a === b,
+      json: (context) => JSON.stringify(context),
+      startsWith: (str, prefix) => str && str.startsWith(prefix),
+      endsWith: (str, suffix) => str && str.endsWith(suffix),
       formatDate: (date) => {
         if (!date) return "";
         const d = new Date(date);

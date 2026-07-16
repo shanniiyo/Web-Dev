@@ -55,8 +55,8 @@ exports.createFlight = async (req, res) => {
 // Update Flight
 exports.updateFlight = async (req, res) => {
   try {
-    await Flight.findByIdAndUpdate(req.params.id, req.body);
-
+    const { seats, availableSeats, ...updateData } = req.body;
+    await Flight.findByIdAndUpdate(req.params.id, updateData);
     res.redirect("/admin/flights");
   } catch (err) {
     console.error(err);
