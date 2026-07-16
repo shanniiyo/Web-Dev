@@ -59,25 +59,17 @@ app.get("/booking", (req, res) => {
 app.use("/", require("./routes/flightRoutes"));
 app.use("/", require("./routes/reservationRoutes"));
 
-//Admin Page
-app.get("/admin", (req, res) => {
-  res.render("admin");
-});
-
 //Admin Dashboard
 app.get("/admin/dashboard", (req, res) => {
-  res.render("adminDashboard");
+  res.render("admin-Dashboard");
 });
 
-//Admin Flight Management
-app.get("/admin/flight-management", (req, res) => {
-  res.render("adminFlightManagement");
+//Admin Users
+app.get("/admin/users", (req, res) => {
+  res.render("admin-users");
 });
 
-//Admin Reservation Management
-app.get("/admin/reservation-management", (req, res) => {
-  res.render("adminReservationManagement");
-});
+
 
 
 
