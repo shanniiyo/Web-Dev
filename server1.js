@@ -50,9 +50,37 @@ app.get("/search", (req, res) => {
   res.render("search");
 });
 
+// Booking Page
+app.get("/booking", (req, res) => {
+  res.render("booking");
+});
+
 // 2. Flight Management + 5. Reservation Management
 app.use("/", require("./routes/flightRoutes"));
 app.use("/", require("./routes/reservationRoutes"));
+
+//Admin Page
+app.get("/admin", (req, res) => {
+  res.render("admin");
+});
+
+//Admin Dashboard
+app.get("/admin/dashboard", (req, res) => {
+  res.render("adminDashboard");
+});
+
+//Admin Flight Management
+app.get("/admin/flight-management", (req, res) => {
+  res.render("adminFlightManagement");
+});
+
+//Admin Reservation Management
+app.get("/admin/reservation-management", (req, res) => {
+  res.render("adminReservationManagement");
+});
+
+
+
 
 // =====================
 // Start Server
