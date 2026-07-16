@@ -41,6 +41,31 @@ const flightSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+
+  seats: [{
+    seatNumber: {
+      type: String,
+      required: true,
+    },
+    isAvailable: {
+      type: Boolean,
+      default: true,
+    },
+    name: {
+      type: String,
+      default: "",
+    },
+    email: {
+      type: String,
+      default: "",
+    },
+    PassportNumber: {
+      type: String,
+      default: "",
+    },
+  }],
+
+  
 });
 
 module.exports = mongoose.model("Flight", flightSchema);

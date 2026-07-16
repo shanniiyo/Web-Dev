@@ -6,6 +6,7 @@ const app = express();
 
 // Connect to MongoDB
 require("./db/conn");
+const Flight = require("./models/Flight");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -51,8 +52,22 @@ app.get("/search", (req, res) => {
 });
 
 // Booking Page
-app.get("/booking", (req, res) => {
-  res.render("booking");
+app.get("/booking", async (req, res) => {
+  try {
+    const flightId = req.query.flightId;
+    if (!flightId) {
+      return res.redirect("/search");
+    }
+    const flight = await Flight.findById(flightId);
+    if (!flight) {
+      return res.status(404).send("Flight not found");
+    }
+    const flightObj = flight.toObject();
+    res.render("booking", { flight: flightObj });
+  } catch (error) {
+    console.error("Error fetching flight:", error);
+    res.status(500).send("Server error");
+  }
 });
 
 // 2. Flight Management + 5. Reservation Management

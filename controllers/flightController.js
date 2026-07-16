@@ -22,6 +22,27 @@ exports.getAllFlights = async (req, res) => {
 exports.createFlight = async (req, res) => {
   try {
     const newFlight = new Flight(req.body);
+    const rows = 5;
+    const col = 4;
+    const colLetters = ["A", "B", "C", "D"];
+    const seats = [];
+   
+    for (let i = 1; i <= rows; i++) {
+      for (let j = 0; j < col; j++) {
+        const seatNumber = `${i}${colLetters[j]}`;
+        seats.push({ 
+          seatNumber,
+          isAvailable: true,
+          name: "",
+          email: "",
+          PassportNumber: ""
+        });
+      }
+    }
+   
+    newFlight.seats = seats;
+    newFlight.availableSeats = seats.length;
+   
     await newFlight.save();
 
     res.redirect("/admin/flights");
