@@ -10,9 +10,11 @@ const Flight = require("../models/Flight");
 // Show passenger's reservations page
 exports.getMyReservations = async (req, res) => {
   try {
+    // NOTE: once auth is wired up by your teammate, filter by req.session.userId
     const reservations = await Reservation.find()
       .populate("flight")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .lean();
 
     res.render("reservations", { reservations });
   } catch (err) {
@@ -26,7 +28,8 @@ exports.getAllReservationsAdmin = async (req, res) => {
   try {
     const reservations = await Reservation.find()
       .populate("flight")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .lean();
 
     res.render("admin-reservations", { reservations });
   } catch (err) {
@@ -41,7 +44,6 @@ exports.createReservation = async (req, res) => {
     const { flightId, passengerName, email, passportNumber, seatNumber } =
       req.body;
 
-    // Server-side validation
     if (!passengerName || !email || !passportNumber) {
       return res.status(400).json({ error: "Missing required passenger information" });
     }

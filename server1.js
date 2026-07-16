@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static files (CSS, JS, Images)
-app.use(express.static(path.join(__dirname, ".", "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Handlebars
 app.engine(
@@ -25,12 +25,8 @@ app.engine(
         if (!date) return "";
         const d = new Date(date);
         return d.toLocaleString("en-PH", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
+          dateStyle: "medium",
+          timeStyle: "short",
         });
       },
     },
@@ -38,7 +34,7 @@ app.engine(
 );
 
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, ".", "views"));
+app.set("views", path.join(__dirname, "views"));
 
 // =====================
 // Routes
