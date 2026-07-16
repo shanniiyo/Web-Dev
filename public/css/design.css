@@ -91,3 +91,27 @@ footer {
   padding: 20px;
   border-radius: 10px;
 }
+
+/* Make table text visible */
+table tbody td {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+.table tbody td {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa !important;
+}
+
+.admin-sidebar .nav-link {
+  color: #333 !important;
+}
+
+.admin-sidebar .nav-link.active {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+}
