@@ -5,6 +5,7 @@
  */
 
 const Flight = require("../models/Flight");
+const { logActivity } = require("../utils/auditLogger");
 
 // Show Flight Management Page
 exports.getAllFlights = async (req, res) => {
@@ -45,6 +46,13 @@ exports.createFlight = async (req, res) => {
    
     await newFlight.save();
 
+    logActivity({
+      username: req.session.user.email,
+      role: req.session.user.role,
+      activity: "Flight Creation",
+      details: `Created flight ${newFlight.flightNumber} (${newFlight.origin} -> ${newFlight.destination})`,
+    });
+
     res.redirect("/admin/flights");
   } catch (err) {
     console.error(err);
@@ -56,7 +64,15 @@ exports.createFlight = async (req, res) => {
 exports.updateFlight = async (req, res) => {
   try {
     const { seats, availableSeats, ...updateData } = req.body;
-    await Flight.findByIdAndUpdate(req.params.id, updateData);
+    const updatedFlight = await Flight.findByIdAndUpdate(req.params.id, updateData, { new: true });
+
+    logActivity({
+      username: req.session.user.email,
+      role: req.session.user.role,
+      activity: "Flight Update",
+      details: `Updated flight ${updatedFlight ? updatedFlight.flightNumber : req.params.id}`,
+    });
+
     res.redirect("/admin/flights");
   } catch (err) {
     console.error(err);
@@ -67,7 +83,14 @@ exports.updateFlight = async (req, res) => {
 // Delete Flight
 exports.deleteFlight = async (req, res) => {
   try {
-    await Flight.findByIdAndDelete(req.params.id);
+    const deletedFlight = await Flight.findByIdAndDelete(req.params.id);
+
+    logActivity({
+      username: req.session.user.email,
+      role: req.session.user.role,
+      activity: "Flight Deletion",
+      details: `Deleted flight ${deletedFlight ? deletedFlight.flightNumber : req.params.id}`,
+    });
 
     res.redirect("/admin/flights");
   } catch (err) {

@@ -37,6 +37,19 @@ app.engine(
     defaultLayout: false, // every .hbs view here is a full standalone page
     helpers: {
       eq: (a, b) => a === b,
+      formatDate: (date) => {
+        if (!date) return "";
+        const d = new Date(date);
+        if (isNaN(d)) return "";
+        return d.toLocaleString("en-PH", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        });
+      },
     },
   })
 );
@@ -55,6 +68,7 @@ app.use("/", require("./routes/userRoutes"));        // #1 Register / Login / Lo
 app.use("/", require("./routes/profileRoutes"));     // #1 View / Update Profile
 app.use("/", require("./routes/flightRoutes"));       // #2 Flight Management (admin CRUD + search)
 app.use("/", require("./routes/reservationRoutes"));  // #5 Reservation Management
+app.use("/", require("./routes/auditRoutes"));        // #4 Audit Trail Logging
 
 // Public pages
 app.get("/", (req, res) => res.render("index"));

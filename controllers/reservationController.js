@@ -6,6 +6,7 @@
  */
 const Reservation = require("../models/Reservation");
 const Flight = require("../models/Flight");
+const { logActivity } = require("../utils/auditLogger");
 
 // to check ownership
 function canModify(req, reservation) {
@@ -102,6 +103,13 @@ exports.createReservation = async (req, res) => {
     flight.availableSeats -= 1;
     await flight.save();
 
+    logActivity({
+      username: req.session.user.email,
+      role: req.session.user.role,
+      activity: "Reservation Creation",
+      details: `Reservation ${reservationNumber} for flight ${flight.flightNumber}, seat ${seatNumber}`,
+    });
+
     res.status(201).json(reservation);
   } catch (err) {
     console.error(err);
@@ -195,6 +203,13 @@ exports.cancelReservation = async (req, res) => {
       },
       { arrayFilters: [{ "elem.seatNumber": reservation.seatNumber }] }
     );
+
+    logActivity({
+      username: req.session.user.email,
+      role: req.session.user.role,
+      activity: "Reservation Cancellation",
+      details: `Cancelled reservation ${reservation.reservationNumber}`,
+    });
 
     res.json({ success: true, reservation });
   } catch (err) {

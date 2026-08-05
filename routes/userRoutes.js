@@ -5,6 +5,7 @@ const User = require("../models/User");
 const { hashPassword, verifyPassword } = require("../utils/password_utils");
 const { validateRegistration, validateLogin } = require("../utils/validate_utils");
 const { requireGuest } = require("../middleware/middleware_auth");
+const { logActivity } = require("../utils/auditLogger");
 
 // to buidl the object we keep every session
 // dont store password hash here
@@ -64,6 +65,13 @@ router.post("/register", requireGuest, async (req, res) => {
         });
       }
       req.session.user = toSessionUser(newUser);
+
+      logActivity({
+        username: newUser.email,
+        role: newUser.role,
+        activity: "User Registration",
+      });
+
       return res.redirect("/profile");
     });
   } catch (err) {
@@ -128,6 +136,12 @@ router.post("/login", requireGuest, async (req, res) => {
 
       req.session.user = toSessionUser(user);
 
+      logActivity({
+        username: user.email,
+        role: user.role,
+        activity: "User Login",
+      });
+
       if (returnTo) return res.redirect(returnTo);
       if (user.role === "admin") return res.redirect("/admin-dashboard");
       return res.redirect("/profile");
@@ -143,6 +157,18 @@ router.post("/login", requireGuest, async (req, res) => {
 
 //LOGOUT
 function doLogout(req, res) {
+  // Grab the user info before the session is destroyed, otherwise
+  // req.session.user is gone by the time we'd try to log it.
+  const loggedOutUser = req.session && req.session.user;
+
+  if (loggedOutUser) {
+    logActivity({
+      username: loggedOutUser.email,
+      role: loggedOutUser.role,
+      activity: "User Logout",
+    });
+  }
+
   req.session.destroy(() => {
     res.clearCookie("connect.sid");
     res.redirect("/login");
