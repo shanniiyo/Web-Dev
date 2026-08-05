@@ -59,7 +59,7 @@ app.set("view engine", "hbs");
 app.set("views", "./views");
 
 // Make the logged-in user available to every view as "user"
-const { attachUserToLocals, requireAuth, requireAdmin } = require("./middleware/middleware_auth");
+const { attachUserToLocals, requireAuth, requireAdmin, requireRole } = require("./middleware/middleware_auth");
 app.use(attachUserToLocals);
 
 
