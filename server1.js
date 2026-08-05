@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 
 // Connect to MongoDB
-require("./db/con");
+require("./db/conn");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
