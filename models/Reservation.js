@@ -6,63 +6,65 @@
  */
 const mongoose = require("mongoose");
 
-const reservationSchema = new mongoose.Schema({
-  reservationNumber: {
-    type: String,
-    required: true,
-    unique: true,
-  },
+const reservationSchema = new mongoose.Schema(
+  {
+    reservationNumber: {
+      type: String,
+      required: true,
+      unique: true,
+    },
 
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  
-  flight: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Flight",
-    required: true,
-  },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
 
-  flightNumber: {
-    type: String,
-    required: true,
-  },
+    flight: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Flight",
+      required: true,
+    },
 
-  passengerName: {
-    type: String,
-    required: true,
-  },
+    flightNumber: {
+      type: String,
+      required: true,
+    },
 
-  email: {
-    type: String,
-    required: true,
-  },
+    passengerName: {
+      type: String,
+      required: true,
+    },
 
-  passportNumber: {
-    type: String,
-    required: true,
-  },
+    email: {
+      type: String,
+      required: true,
+    },
 
-  seatNumber: {
-    type: String,
-    required: true,
-  },
+    passportNumber: {
+      type: String,
+      required: true,
+    },
 
-  totalPrice: {
-    type: Number,
-    required: true,
-  },
+    seatNumber: {
+      type: String,
+      required: true,
+    },
 
-  bookingStatus: {
-    type: String,
-    enum: ["Confirmed", "Pending", "Cancelled", "Completed"],
-    default: "Confirmed",
+    totalPrice: {
+      type: Number,
+      required: true,
+    },
+
+    bookingStatus: {
+      type: String,
+      enum: ["Confirmed", "Pending", "Cancelled", "Completed"],
+      default: "Confirmed",
+    },
   },
-},
-{
-  timestamps: true,
-});
+  {
+    timestamps: true,
+  }
+);
 
 module.exports = mongoose.model("Reservation", reservationSchema);
