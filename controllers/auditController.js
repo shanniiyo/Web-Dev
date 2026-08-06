@@ -1,6 +1,6 @@
 /**
  * 4. Audit Trail Logging
- * Administrators can view the audit trail through an audit log page.
+ * Admin can view the audit trail through an audit log page.
  */
 
 const AuditLog = require("../models/AuditLog");

@@ -53,7 +53,7 @@ exports.createFlight = async (req, res) => {
       details: `Created flight ${newFlight.flightNumber} (${newFlight.origin} -> ${newFlight.destination})`,
     });
 
-    res.redirect("/admin/flights");
+    res.redirect("/admin-flights");
   } catch (err) {
     console.error(err);
     res.status(400).send(err.message);
@@ -73,7 +73,7 @@ exports.updateFlight = async (req, res) => {
       details: `Updated flight ${updatedFlight ? updatedFlight.flightNumber : req.params.id}`,
     });
 
-    res.redirect("/admin/flights");
+    res.redirect("/admin-flights");
   } catch (err) {
     console.error(err);
     res.status(400).send(err.message);
@@ -92,7 +92,7 @@ exports.deleteFlight = async (req, res) => {
       details: `Deleted flight ${deletedFlight ? deletedFlight.flightNumber : req.params.id}`,
     });
 
-    res.redirect("/admin/flights");
+    res.redirect("/admin-flights");
   } catch (err) {
     console.error(err);
     res.status(400).send(err.message);

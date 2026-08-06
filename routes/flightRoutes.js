@@ -1,12 +1,12 @@
 /**
- * 2. Flight Management — Routes
+ * 2. Flight Management
  */
 const express = require("express");
 const router = express.Router();
 const flightController = require("../controllers/flightController");
 const { requireAdmin } = require("../middleware/middleware_auth");
 
-// Admin - Flight Management page (view all flights)
+// Admin - Flight Management page
 router.get("/admin-flights", requireAdmin, flightController.getAllFlights);
 
 // Admin - Create a new flight

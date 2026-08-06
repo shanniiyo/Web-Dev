@@ -1,5 +1,5 @@
 /**
- * 4. Audit Trail Logging — Routes
+ * 4. Audit Trail Logging
  */
 const express = require("express");
 const router = express.Router();

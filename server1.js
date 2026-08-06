@@ -119,7 +119,7 @@ app.get("/admin-users", requireRole("admin"), (req, res) => {
 
 //404
 app.use((req, res) => {
-  res.status(404).render("access-denied", { message: "Page not found." });
+  res.status(404).render("accessDenied", { message: "Page not found." });
 });
 
 // Catch-all error handler

@@ -18,7 +18,7 @@ const auditLogSchema = new mongoose.Schema({
     required: true,
   },
 
-  // Short extra context (flight number, reservation ref, etc.), optional.
+  // Short extra context
   details: {
     type: String,
     default: "",

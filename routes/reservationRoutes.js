@@ -1,5 +1,5 @@
 /**
- * 5. Reservation Management — Routes
+ * 5. Reservation Management
  */
 const express = require("express");
 const router = express.Router();
