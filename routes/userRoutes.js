@@ -3,17 +3,20 @@ const router = express.Router();
 
 const User = require("../models/User");
 const { hashPassword, verifyPassword } = require("../utils/password_utils");
-const { validateRegistration, validateLogin } = require("../utils/validate_utils");
+const {
+  validateRegistration,
+  validateLogin,
+} = require("../utils/validate_utils");
 const { requireGuest } = require("../middleware/middleware_auth");
 const { logActivity } = require("../utils/auditLogger");
 
 // to buidl the object we keep every session
 // dont store password hash here
 function toSessionUser(user) {
-  return{
+  return {
     id: user._id.toString(),
     firstname: user.firstName,
-    lastname: user.lastname,
+    lastname: user.lastName,
     email: user.email,
     role: user.role,
   };
@@ -82,8 +85,6 @@ router.post("/register", requireGuest, async (req, res) => {
     });
   }
 });
-
-
 
 // LOGIN
 
