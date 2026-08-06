@@ -5,7 +5,7 @@ const User = require("./models/User");
 const { hashPassword } = require("./utils/password_utils");
 
 async function seed() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/LoginDB");
+  await mongoose.connect("mongodb://127.0.0.1:27017/FlyScannerDB");
 
   const email = "admin@flyscanners.com";
   const plainPassword = "Admin@12345";
