@@ -1,44 +1,44 @@
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true,
-        trim: true,
-    },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    lastName: {
-        type: String,
-        required: true, 
-        trim: true,
-    },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
 
-    email: {
-        type: String,
-        required: true, 
-        unique: true,
-        lowercase: true,
-        trim: true,
-    },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+  },
 
-    password: {
-        type: String,
-        required: true,
-    },
+  password: {
+    type: String,
+    required: true,
+  },
 
-    role: {
-        type: String,
-        enum: ["passenger", "admin"],
-        default: "passenger",
-    },
+  role: {
+    type: String,
+    enum: ["passenger", "admin"],
+    default: "passenger",
+  },
 
-    status: {
-        type: String,
-        enum: ["Active", "Inactive", "Suspended"],
-        default: "Active"
-    },
+  status: {
+    type: String,
+    enum: ["Active", "Inactive", "Suspended"],
+    default: "Active",
+  },
 
-    // Profile fields (optional, filled in via "Update profile information")
+  // Profile fields (optional, filled in via "Update profile information")
   phone: { type: String, default: "" },
   countryCode: { type: String, default: "+63" },
   nationality: { type: String, default: "" },
