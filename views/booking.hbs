@@ -9,57 +9,78 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="/css/design.css" />
   </head>
 
   <body>
     <!-- Navigation -->
-    <!-- UPDATE LINKS -->
+
     <div class="fixed-top">
       <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
-        <div class="container">
-          <a class="navbar-brand" href="index.html"> FlyScanners </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#mainMenu"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="mainMenu">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html"> Home </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="search.html"> Search Flights </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="booking(1).html">
-                  Book Flight
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"> My Reservations </a>
-              </li>
-              <div class="dropdown">
-                <button
-                  class="btn btn-success dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton1"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Account
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Profile</a></li>
-                  <li><a class="dropdown-item" href="#">Settings</a></li>
-                  <li><a class="dropdown-item" href="#">Log Out</a></li>
-                </ul>
-              </div>
-            </ul>
+
+          <div class="container">
+
+            <a class="navbar-brand" href="/"> FlyScanners </a>
+
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#mainMenu"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainMenu">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/"> Home </a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/search"> Search Flights </a>  {{!-- changed the href to this format --}}
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="/reservations"> My Reservations </a>
+                </li>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-success dropdown-toggle"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                    >
+                      Account
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                      <li>
+                        <a class="dropdown-item" href="/profile"
+                          ><i class="bi bi-person-fill me-2"></i>Profile</a
+                        >
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="/admin/dashboard" id="dashboardLink"
+                          ><i class="bi bi-gear-fill me-2"></i>Admin Dashboard</a
+                        >
+                      </li>
+                      <li><hr class="dropdown-divider" /></li>
+                      <li>
+                        <a
+                          class="dropdown-item text-danger"
+                          href="#"
+                          id="navLogoutLink"
+                          ><i class="bi bi-box-arrow-right me-2"></i>Log Out</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </nav>
@@ -133,20 +154,14 @@
         <div class="row mb-4">
           <div class="col-md-6">
             <div class="border rounded p-3 mb-3">
-              <h5>Departure Flight</h5>
-              <p><strong>From:</strong> Manila - Philippines</p>
-              <p><strong>To:</strong> Cebu - Philippines</p>
-              <p><strong>Date:</strong> June 20, 2026</p>
-              <p><strong>Time:</strong> 08:00 - 10:30</p>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="border rounded p-3 mb-3">
-              <h5>Return Flight</h5>
-              <p><strong>From:</strong> Cebu - Philippines</p>
-              <p><strong>To:</strong> Manila - Philippines</p>
-              <p><strong>Date:</strong> June 25, 2026</p>
-              <p><strong>Time:</strong> 14:00 - 16:30</p>
+              <h5>Flight Details</h5>
+              <p><strong>Flight Number:</strong> {{flight.flightNumber}}</p>
+              <p><strong>Airline:</strong> {{flight.airline}}</p>
+              <p><strong>From:</strong> {{flight.origin}}</p>
+              <p><strong>To:</strong> {{flight.destination}}</p>
+              <p><strong>Departure:</strong> {{formatDate flight.departureDateTime}}</p>
+              <p><strong>Arrival:</strong> {{formatDate flight.arrivalDateTime}}</p>
+              <p><strong>Price:</strong> ₱{{flight.ticketPrice}}</p>
             </div>
           </div>
         </div>
@@ -168,274 +183,121 @@
             </div>
           </div>
 
-          <!-- Interactive Seat Map (Bootstrap Grid) -->
+          <!-- Interactive Seat Map (Bootstrap Grid) - Dynamically generated from flight seats array -->
           <div class="row justify-content-center mb-4">
             <div class="col-md-8">
               <div class="seat-map bg-light p-4 rounded">
                 <div class="text-center mb-3"><strong>Cockpit</strong></div>
-                <!-- Row 1 -->
+                <!-- Row 1 (Premium seats) -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1A"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1B"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1C"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="1D"
-                    data-premium="true"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-warning text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      1D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '1')}}
+                      {{#if (eq seatNumber '1C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        data-premium="true"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-warning{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 2 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="2A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      2A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="2B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      2B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="2C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      2C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="2D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      2D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '2')}}
+                      {{#if (eq seatNumber '2C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 3 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="3A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      3A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="3B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      3B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="3C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      3C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="3D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      3D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '3')}}
+                      {{#if (eq seatNumber '3C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 4 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="4A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      4A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="4B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      4B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="4C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      4C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="4D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      4D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '4')}}
+                      {{#if (eq seatNumber '4C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
                 <!-- Row 5 -->
                 <div class="row g-2 mb-2 justify-content-center">
-                  <div
-                    class="col-auto seat available"
-                    data-seat="5A"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      5A
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat occupied"
-                    data-seat="5B"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-secondary text-white text-center"
-                      style="min-width: 50px; cursor: not-allowed"
-                    >
-                      5B
-                    </div>
-                  </div>
-                  <div class="col-auto">&nbsp;</div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="5C"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      5C
-                    </div>
-                  </div>
-                  <div
-                    class="col-auto seat available"
-                    data-seat="5D"
-                    onclick="selectSeat(this)"
-                  >
-                    <div
-                      class="p-2 rounded bg-success text-white text-center"
-                      style="min-width: 50px; cursor: pointer"
-                    >
-                      5D
-                    </div>
-                  </div>
+                  {{#each flight.seats}}
+                    {{#if (startsWith seatNumber '5')}}
+                      {{#if (eq seatNumber '5C')}}
+                        <div class="col-auto">&nbsp;</div>
+                      {{/if}}
+                      <div
+                        class="col-auto seat {{#if isAvailable}}available{{else}}occupied{{/if}}"
+                        data-seat="{{seatNumber}}"
+                        {{#if isAvailable}}onclick="selectSeat(this)"{{/if}}
+                      >
+                        <div
+                          class="p-2 rounded {{#if isAvailable}}bg-success{{else}}bg-secondary{{/if}} text-white text-center"
+                          style="min-width: 50px; {{#if isAvailable}}cursor: pointer{{else}}cursor: not-allowed{{/if}}"
+                        >
+                          {{seatNumber}}
+                        </div>
+                      </div>
+                    {{/if}}
+                  {{/each}}
                 </div>
               </div>
             </div>
@@ -562,13 +424,13 @@
           <h4 class="mb-3">Price Summary</h4>
           <div class="row">
             <div class="col-md-6">
-              <p>Base Fare: ₱2500.00</p>
+              <p>Base Fare: ₱{{flight.ticketPrice}}.00</p>
               <p id="mealCost">Meal: ₱0.00</p>
               <p id="seatCost">Seat Fee: ₱0.00</p>
               <p id="baggageCost">Additional Baggage: ₱0.00</p>
               <p id="servicesCost">Extra Services: ₱0.00</p>
               <hr />
-              <h4>Total: <span id="finalTotal">₱2500.00</span></h4>
+              <h4>Total: <span id="finalTotal">₱{{flight.ticketPrice}}.00</span></h4>
             </div>
           </div>
         </div>
@@ -825,7 +687,7 @@
             <h4>Payment Summary</h4>
             <div class="d-flex justify-content-between">
               <span>Base Fare</span>
-              <span>₱2500.00</span>
+              <span>₱{{flight.ticketPrice}}.00</span>
             </div>
             <div class="d-flex justify-content-between">
               <span>Extra Services</span>
@@ -852,7 +714,8 @@
             <button
               type="button"
               class="btn btn-success btn-lg"
-              onclick="nextStep(4)"
+              onclick="createBooking()"
+              id="confirmBookingBtn"
             >
               Confirm Booking
             </button>
@@ -881,11 +744,11 @@
           <div class="border rounded p-4 d-inline-block mb-4">
             <h5>
               Booking Reference:
-              <span class="text-primary">PAL20260617001</span>
+              <span class="text-primary" id="bookingReference">Loading...</span>
             </h5>
           </div>
           <br />
-          <a href="index.html" class="btn btn-dark btn-lg">Return to Home</a>
+          <a href="/"  class="btn btn-dark btn-lg">Return to Home</a>
         </div>
       </div>
     </div>
@@ -900,128 +763,315 @@
     ></script>
 
     <!-- JavaScript -->
-
+    
     <script>
-      function nextStep(step) { // Hide current step
-      document.getElementById("step" + (step - 1)).style.display = "none"; //
-      Show next step document.getElementById("step" + step).style.display =
-      "block"; // Update indicators updateStepIndicators(step); // Scroll to top
-      window.scrollTo({ top: 100, behavior: "smooth" }); } function
-      prevStep(step) { // Hide current step document.getElementById("step" +
-      (step + 1)).style.display = "none"; // Show previous step
-      document.getElementById("step" + step).style.display = "block"; // Update
-      indicators updateStepIndicators(step); // Scroll to top window.scrollTo({
-      top: 100, behavior: "smooth" }); } function
-      updateStepIndicators(currentStep) { for (let i = 1; i <= 4; i++) { const
-      indicator = document.getElementById("step" + i + "-indicator"); const line
-      = document.getElementById("line" + i); if (i < currentStep) {
-      indicator.className = "rounded-circle bg-success text-white d-flex
-      align-items-center justify-content-center mx-auto"; indicator.innerHTML =
-      "✓"; if (line) line.className = "border-success"; } else if (i ===
-      currentStep) { indicator.className = "rounded-circle bg-primary text-white
-      d-flex align-items-center justify-content-center mx-auto";
-      indicator.innerHTML = i; if (line) line.className = "border-primary"; }
-      else { indicator.className = "rounded-circle bg-secondary text-white
-      d-flex align-items-center justify-content-center mx-auto";
-      indicator.innerHTML = i; if (line) line.className = "border-secondary"; }
-      } } function validateForm() { let isValid = true; // Reset all errors
-      const errors = document.querySelectorAll(".text-danger");
-      errors.forEach((error) => (error.style.display = "none")); // Validate
-      Full Name const fullName =
-      document.getElementById("fullName").value.trim(); if (!fullName) {
-      document.getElementById("fullNameError").style.display = "block"; isValid
-      = false; } // Validate Email const email =
-      document.getElementById("email").value.trim(); const emailRegex =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/; if (!email || !emailRegex.test(email)) {
-      document.getElementById("emailError").style.display = "block"; isValid =
-      false; } // Validate Contact Number const contact =
-      document.getElementById("contactNumber").value.trim(); if (!contact) {
-      document.getElementById("contactError").style.display = "block"; isValid =
-      false; } // Validate Passport Number const passport =
-      document.getElementById("passportNumber").value.trim(); if (!passport) {
-      document.getElementById("passportError").style.display = "block"; isValid
-      = false; } // Validate Nationality const nationality =
-      document.getElementById("nationality").value; if (!nationality) {
-      document.getElementById("nationalityError").style.display = "block";
-      isValid = false; } // Validate Date of Birth const dob =
-      document.getElementById("dateOfBirth").value; if (!dob) {
-      document.getElementById("dobError").style.display = "block"; isValid =
-      false; } // Validate Gender const genderSelected = document.querySelector(
-      'input[name="gender"]:checked' ); if (!genderSelected) {
-      document.getElementById("genderError").style.display = "block"; isValid =
-      false; } // Validate Emergency Contact const emergency = document
-      .getElementById("emergencyContact") .value.trim(); if (!emergency) {
-      document.getElementById("emergencyError").style.display = "block"; isValid
-      = false; } if (isValid) { nextStep(3); return false; } return false; } //
-      Meal selection functions const mealDetails = { standard: { name: "Standard
-      Meal", description: "Regular in-flight meal with main course, side, and
-      dessert. Complimentary beverage included.", cost: 0, }, vegetarian: {
-      name: "Vegetarian Meal", description: "Plant-based meal with fresh
-      vegetables, grains, and dairy-free options where applicable.", cost: 150,
-      }, vegan: { name: "Vegan Meal", description: "100% plant-based meal with
-      no animal products, including dairy and honey.", cost: 150, }, halal: {
-      name: "Halal Meal", description: "Meal prepared according to Islamic
-      dietary guidelines, containing no pork or prohibited ingredients.", cost:
-      150, }, kosher: { name: "Kosher Meal", description: "Meal prepared
-      according to Jewish dietary laws, certified kosher and packaged
-      separately.", cost: 150, }, glutenfree: { name: "Gluten-Free Meal",
-      description: "Meal free from wheat, barley, and rye, suitable for those
-      with celiac disease or gluten sensitivity.", cost: 150, }, }; function
-      updateMealDetails() { const select =
-      document.getElementById("mealSelect"); const selectedMeal = select.value;
-      const meal = mealDetails[selectedMeal];
-      document.getElementById("mealDescription").innerHTML = `
-      <h6>${meal.name}</h6> <p class="mb-0">${meal.description}</p> `;
-      updateTotalPrice(); } // Seat selection functions let
-      currentlySelectedSeat = null; function selectSeat(element) { const seat =
-      element.querySelector("div"); // Check if seat is occupied if
-      (element.classList.contains("occupied")) { alert("This seat is already
-      occupied. Please select another seat."); return; } // Deselect previous
-      seat if (currentlySelectedSeat) { const prevSeat =
-      currentlySelectedSeat.querySelector("div"); if
-      (currentlySelectedSeat.dataset.premium === "true") { prevSeat.className =
-      "p-2 rounded bg-warning text-white text-center"; } else {
-      prevSeat.className = "p-2 rounded bg-success text-white text-center"; }
-      prevSeat.style.cursor = "pointer"; } // Select new seat if
-      (currentlySelectedSeat !== element) { currentlySelectedSeat = element;
-      seat.className = "p-2 rounded bg-primary text-white text-center";
-      seat.style.cursor = "pointer"; // Show selected seat info
-      document.getElementById("selectedSeatInfo").style.display = "block";
-      document.getElementById("selectedSeat").textContent =
-      element.dataset.seat; } else { // Deselect if clicking the same seat
-      currentlySelectedSeat = null;
-      document.getElementById("selectedSeatInfo").style.display = "none"; }
-      updateTotalPrice(); } // Extra services functions let baggageCount = 0;
-      function updateBaggage(value) { baggageCount = parseInt(value);
-      document.getElementById("baggageQty").textContent = value;
-      updateTotalPrice(); } // Total price calculation function
-      updateTotalPrice() { let baseFare = 2500; // Base fare for the flight let
-      total = baseFare; // Calculate meal cost const mealSelect =
-      document.getElementById("mealSelect"); const selectedMeal =
-      mealSelect.value; const mealCost = mealDetails[selectedMeal].cost;
-      document.getElementById( "mealCost" ).textContent = `Meal:
-      ₱${mealCost.toFixed(2)}`; total += mealCost; // Calculate seat cost let
-      seatCost = 0; if ( currentlySelectedSeat &&
-      currentlySelectedSeat.dataset.premium === "true" ) { seatCost = 2000; }
-      document.getElementById( "seatCost" ).textContent = `Seat Fee:
-      ₱${seatCost.toFixed(2)}`; total += seatCost; // Calculate baggage cost
-      const baggageCost = baggageCount * 500; document.getElementById(
-      "baggageCost" ).textContent = `Additional Baggage:
-      ₱${baggageCost.toFixed(2)}`; total += baggageCost; // Calculate extra
-      services cost let servicesCost = 0; if
-      (document.getElementById("priorityBoarding").checked) servicesCost +=
-      1000; if (document.getElementById("travelInsurance").checked) servicesCost
-      += 1000; if (document.getElementById("loungeAccess").checked) servicesCost
-      += 500; document.getElementById( "servicesCost" ).textContent = `Extra
-      Services: ₱${servicesCost.toFixed(2)}`; total += servicesCost; // Update
-      final total document.getElementById("finalTotal").textContent =
-      `₱${total.toFixed( 2 )}`; // Update each line item in payment summary
-      using explicit IDs let taxes = 500; // Fixed taxes & fees let extrasTotal
-      = mealCost + seatCost + baggageCost + servicesCost; let finalPaymentTotal
-      = baseFare + extrasTotal + taxes; // Adding fixed taxes & fees
-      document.getElementById( "paymentExtras" ).textContent =
-      `₱${extrasTotal.toFixed(2)}`; document.getElementById( "paymentFinalTotal"
-      ).textContent = `₱${finalPaymentTotal.toFixed(2)}`; }
+      const baseFare = {{flight.ticketPrice}};
+
+      function nextStep(step) {
+          // Hide current step
+          document.getElementById('step' + (step - 1)).style.display = 'none';
+          // Show next step
+          document.getElementById('step' + step).style.display = 'block';
+          // Update indicators
+          updateStepIndicators(step);
+          // Scroll to top
+          window.scrollTo({ top: 100, behavior: 'smooth' });
+      }
+
+      function prevStep(step) {
+          // Hide current step
+          document.getElementById('step' + (step + 1)).style.display = 'none';
+          // Show previous step
+          document.getElementById('step' + step).style.display = 'block';
+          // Update indicators
+          updateStepIndicators(step);
+          // Scroll to top
+          window.scrollTo({ top: 100, behavior: 'smooth' });
+      }
+
+      function updateStepIndicators(currentStep) {
+          for (let i = 1; i <= 4; i++) {
+              const indicator = document.getElementById('step' + i + '-indicator');
+              const line = document.getElementById('line' + i);
+              
+              if (i < currentStep) {
+                  indicator.className = 'rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto';
+                  indicator.innerHTML = '✓';
+                  if (line) line.className = 'border-success';
+              } else if (i === currentStep) {
+                  indicator.className = 'rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto';
+                  indicator.innerHTML = i;
+                  if (line) line.className = 'border-primary';
+              } else {
+                  indicator.className = 'rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto';
+                  indicator.innerHTML = i;
+                  if (line) line.className = 'border-secondary';
+              }
+          }
+      }
+
+      function validateForm() {
+          let isValid = true;
+          
+          // Reset all errors
+          const errors = document.querySelectorAll('.text-danger');
+          errors.forEach(error => error.style.display = 'none');
+          
+          // Validate Full Name
+          const fullName = document.getElementById('fullName').value.trim();
+          if (!fullName) {
+              document.getElementById('fullNameError').style.display = 'block';
+              isValid = false;
+          }
+          
+          // Validate Email
+          const email = document.getElementById('email').value.trim();
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailRegex.test(email)) {
+              document.getElementById('emailError').style.display = 'block';
+              isValid = false;
+          }
+          
+          // Validate Contact Number
+          const contact = document.getElementById('contactNumber').value.trim();
+          if (!contact) {
+              document.getElementById('contactError').style.display = 'block';
+              isValid = false;
+          }
+          
+          // Validate Passport Number
+          const passport = document.getElementById('passportNumber').value.trim();
+          if (!passport) {
+              document.getElementById('passportError').style.display = 'block';
+              isValid = false;
+          }
+          
+          // Validate Nationality
+          const nationality = document.getElementById('nationality').value;
+          if (!nationality) {
+              document.getElementById('nationalityError').style.display = 'block';
+              isValid = false;
+          }
+          
+          // Validate Date of Birth
+          const dob = document.getElementById('dateOfBirth').value;
+          if (!dob) {
+              document.getElementById('dobError').style.display = 'block';
+              isValid = false;
+          }
+          
+          // Validate Gender
+          const genderSelected = document.querySelector('input[name="gender"]:checked');
+          if (!genderSelected) {
+              document.getElementById('genderError').style.display = 'block';
+              isValid = false;
+          }
+          
+          // Validate Emergency Contact
+          const emergency = document.getElementById('emergencyContact').value.trim();
+          if (!emergency) {
+              document.getElementById('emergencyError').style.display = 'block';
+              isValid = false;
+          }
+          
+          if (isValid) {
+              nextStep(3);
+              return false;
+          }
+          
+          return false;
+      }
+
+      // Meal selection functions
+      const mealDetails = {
+          standard: {
+              name: "Standard Meal",
+              description: "Regular in-flight meal with main course, side, and dessert. Complimentary beverage included.",
+              cost: 0
+          },
+          vegetarian: {
+              name: "Vegetarian Meal",
+              description: "Plant-based meal with fresh vegetables, grains, and dairy-free options where applicable.",
+              cost: 150
+          },
+          vegan: {
+              name: "Vegan Meal",
+              description: "100% plant-based meal with no animal products, including dairy and honey.",
+              cost: 150
+          },
+          halal: {
+              name: "Halal Meal",
+              description: "Meal prepared according to Islamic dietary guidelines, containing no pork or prohibited ingredients.",
+              cost: 150
+          },
+          kosher: {
+              name: "Kosher Meal",
+              description: "Meal prepared according to Jewish dietary laws, certified kosher and packaged separately.",
+              cost: 150
+          },
+          glutenfree: {
+              name: "Gluten-Free Meal",
+              description: "Meal free from wheat, barley, and rye, suitable for those with celiac disease or gluten sensitivity.",
+              cost: 150
+          }
+      };
+
+      function updateMealDetails() {
+          const select = document.getElementById('mealSelect');
+          const selectedMeal = select.value;
+          const meal = mealDetails[selectedMeal];
+          
+          document.getElementById('mealDescription').innerHTML = `
+              <h6>${meal.name}</h6>
+              <p class="mb-0">${meal.description}</p>
+          `;
+          
+          updateTotalPrice();
+      }
+
+      // Seat selection functions
+      let currentlySelectedSeat = null;
+
+      function selectSeat(element) {
+          const seat = element.querySelector('div');
+          
+          // Check if seat is occupied
+          if (element.classList.contains('occupied')) {
+              alert('This seat is already occupied. Please select another seat.');
+              return;
+          }
+          
+          // Deselect previous seat
+          if (currentlySelectedSeat) {
+              const prevSeat = currentlySelectedSeat.querySelector('div');
+              if (currentlySelectedSeat.dataset.premium === "true") {
+                  prevSeat.className = 'p-2 rounded bg-warning text-white text-center';
+              } else {
+                  prevSeat.className = 'p-2 rounded bg-success text-white text-center';
+              }
+              prevSeat.style.cursor = 'pointer';
+          }
+          
+          // Select new seat
+          if (currentlySelectedSeat !== element) {
+              currentlySelectedSeat = element;
+              seat.className = 'p-2 rounded bg-primary text-white text-center';
+              seat.style.cursor = 'pointer';
+              
+              // Show selected seat info
+              document.getElementById('selectedSeatInfo').style.display = 'block';
+              document.getElementById('selectedSeat').textContent = element.dataset.seat;
+          } else {
+              // Deselect if clicking the same seat
+              currentlySelectedSeat = null;
+              document.getElementById('selectedSeatInfo').style.display = 'none';
+          }
+          
+          updateTotalPrice();
+      }
+
+      // Extra services functions
+      let baggageCount = 0;
+
+      function updateBaggage(value) {
+          baggageCount = parseInt(value);
+          document.getElementById('baggageQty').textContent = value;
+          updateTotalPrice();
+      }
+
+      // Total price calculation
+      function updateTotalPrice() {
+          let total = baseFare;
+          
+          // Calculate meal cost
+          const mealSelect = document.getElementById('mealSelect');
+          const selectedMeal = mealSelect.value;
+          const mealCost = mealDetails[selectedMeal].cost;
+          document.getElementById('mealCost').textContent = `Meal: ₱${mealCost.toFixed(2)}`;
+          total += mealCost;
+          
+          // Calculate seat cost
+          let seatCost = 0;
+          if (currentlySelectedSeat && currentlySelectedSeat.dataset.premium === "true") {
+              seatCost = 2000;
+          }
+          document.getElementById('seatCost').textContent = `Seat Fee: ₱${seatCost.toFixed(2)}`;
+          total += seatCost;
+          
+          // Calculate baggage cost
+          const baggageCost = baggageCount * 500;
+          document.getElementById('baggageCost').textContent = `Additional Baggage: ₱${baggageCost.toFixed(2)}`;
+          total += baggageCost;
+          
+          // Calculate extra services cost
+          let servicesCost = 0;
+          if (document.getElementById('priorityBoarding').checked) servicesCost += 1000;
+          if (document.getElementById('travelInsurance').checked) servicesCost += 1000;
+          if (document.getElementById('loungeAccess').checked) servicesCost += 500;
+          document.getElementById('servicesCost').textContent = `Extra Services: ₱${servicesCost.toFixed(2)}`;
+          total += servicesCost;
+          
+          // Update final total
+          document.getElementById('finalTotal').textContent = `₱${total.toFixed(2)}`;
+
+          // Update each line item in payment summary using explicit IDs
+          let taxes = 500; // Fixed taxes & fees
+          let extrasTotal = mealCost + seatCost + baggageCost + servicesCost;
+          let finalPaymentTotal = baseFare + extrasTotal + taxes; // Adding fixed taxes & fees
+          document.getElementById('paymentExtras').textContent = `₱${extrasTotal.toFixed(2)}`;
+          document.getElementById('paymentFinalTotal').textContent = `₱${finalPaymentTotal.toFixed(2)}`;
+        }
+          
+        // Booking creation
+        async function createBooking() {
+            // Basic validation first
+            if (!currentlySelectedSeat) return alert('Please select a seat first!');
+            
+            const flightId = new URLSearchParams(window.location.search).get('flightId');
+            if (!flightId) return alert('Invalid flight - please search again.');
+
+            // Get form values
+            const passengerName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const passportNumber = document.getElementById('passportNumber').value.trim();
+            
+            if (!passengerName || !email || !passportNumber) return alert('Fill all passenger info!');
+
+            // Disable button
+            const btn = document.getElementById('confirmBookingBtn');
+            btn.disabled = true;
+            btn.textContent = 'Processing...';
+
+            try {
+                // Send to backend
+                const res = await fetch('/api/reservations', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        flightId,
+                        passengerName,
+                        email,
+                        passportNumber,
+                        seatNumber: currentlySelectedSeat.dataset.seat
+                    })
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    // Update UI and go to confirmation
+                    document.getElementById('bookingReference').textContent = data.reservationNumber;
+                    nextStep(4);
+                } else {
+                    alert('Error: ' + data.error);
+                    btn.disabled = false;
+                    btn.textContent = 'Confirm Booking';
+                }
+            } catch (err) {
+                alert('Booking failed - try again');
+                btn.disabled = false;
+                btn.textContent = 'Confirm Booking';
+            }
+        }
     </script>
   </body>
 </html>
