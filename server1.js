@@ -90,6 +90,13 @@ const {
 } = require("./middleware/middleware_auth");
 app.use(attachUserToLocals);
 
+//stops back button from showing cached pages after logout
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  res.set("Pragma", "no-cache");
+  next();
+});
+
 // Feature Routes
 app.use("/", require("./routes/userRoutes")); // #1 Register / Login / Logout
 app.use("/", require("./routes/profileRoutes")); // #1 View / Update Profile

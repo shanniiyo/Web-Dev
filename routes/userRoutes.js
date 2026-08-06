@@ -176,7 +176,5 @@ function doLogout(req, res) {
   });
 }
 
-router.post("/logout", doLogout);
-router.get("/logout", doLogout);
 
 module.exports = router;

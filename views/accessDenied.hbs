@@ -29,7 +29,12 @@
               Signed in as <strong>{{user.email}}</strong> ({{user.role}})
             </p>
             <a href="{{#if isAdmin}}/admin-dashboard{{else}}/profile{{/if}}"
-               class="btn btn-primary">Back to my dashboard</a>
+               class="btn btn-primary">Back to My dashboard</a>
+            <form method="POST" action="/logout" class="m-0 mt-2">
+              <button type="submit" class="btn btn-outline-danger btn-sm">
+                Log Out
+              </button>
+            </form>
           {{else}}
             <a href="/login" class="btn btn-primary">Log In</a>
           {{/if}}
